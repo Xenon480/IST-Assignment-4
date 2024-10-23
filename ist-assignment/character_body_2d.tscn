@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://benrwa8mmy06w"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_ihqp5"]
+[ext_resource type="Texture2D" uid="uid://dhvskcmvdcjmm" path="res://icon.svg" id="2_plk2u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6e7tk"]
+size = Vector2(22.25, 25)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3")]
+collision_layer = 3
+script = ExtResource("1_ihqp5")
+timer = NodePath("Timer")
+timer2 = NodePath("Timer2")
+timer3 = NodePath("Timer3")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-20, 46)
+scale = Vector2(0.171249, 0.21125)
+texture = ExtResource("2_plk2u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-19.875, 46.5)
+shape = SubResource("RectangleShape2D_6e7tk")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer3" type="Timer" parent="."]
+one_shot = true

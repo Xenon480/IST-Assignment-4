@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cibpsnn7ctoph"]
+
+[ext_resource type="Script" path="res://projectile.gd" id="1_0o28f"]
+[ext_resource type="Texture2D" uid="uid://dhvskcmvdcjmm" path="res://icon.svg" id="1_qwl0y"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(265, 111)
+script = ExtResource("1_0o28f")
+metadata/Direction = Vector2(0, 0)
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-2, -1)
+texture = ExtResource("1_qwl0y")
+metadata/Direction = Vector2(0, 0)

@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3dhcs6fov3dd"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_6o3xa"]
+[ext_resource type="Texture2D" uid="uid://dhvskcmvdcjmm" path="res://icon.svg" id="2_xd0ob"]
+[ext_resource type="PackedScene" uid="uid://cibpsnn7ctoph" path="res://Projectile.tscn" id="3_mc57a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sphxe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0j314"]
+radius = 47.0956
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_le2uy"]
+size = Vector2(300, 250)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "Area2d")]
+script = ExtResource("1_6o3xa")
+Shapecast = NodePath("ShapeCast2D")
+Area2d = NodePath("Area2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sphxe")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(2, -0.999999)
+scale = Vector2(0.242188, 0.242188)
+texture = ExtResource("2_xd0ob")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_0j314")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+position = Vector2(145, 1)
+shape = SubResource("RectangleShape2D_le2uy")
+target_position = Vector2(368, 0)
+collision_mask = 2
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_mc57a")]
+position = Vector2(1444, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
