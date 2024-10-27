@@ -6,12 +6,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e7tk"]
 size = Vector2(22.25, 25)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "TextEdit1")]
 collision_layer = 3
 script = ExtResource("1_ihqp5")
 timer = NodePath("Timer")
 timer2 = NodePath("Timer2")
 timer3 = NodePath("Timer3")
+TextEdit1 = NodePath("TextEdit")
+metadata/Health = 100
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(-20, 46)
@@ -23,6 +25,7 @@ position = Vector2(-19.875, 46.5)
 shape = SubResource("RectangleShape2D_6e7tk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -32,3 +35,12 @@ one_shot = true
 
 [node name="Timer3" type="Timer" parent="."]
 one_shot = true
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = -221.0
+offset_top = -145.0
+offset_right = -130.0
+offset_bottom = -89.0
+placeholder_text = "Health"
+
+[connection signal="text_set" from="TextEdit" to="." method="_on_text_edit_text_set"]

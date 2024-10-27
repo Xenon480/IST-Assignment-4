@@ -4,6 +4,7 @@ var direction = Vector2.ZERO
 @export var timer : Timer
 @export var timer2 : Timer
 @export var timer3 : Timer
+@export var TextEdit1: TextEdit
 var maxdashes = 1
 var currentdashes = 0
 var maxslides = 1
@@ -38,8 +39,10 @@ func _ready():
 	timer3.timeout.connect(_on_timer_timeout3)
 	
 func _physics_process(delta):
-	if Input.is_action_just_pressed("Slide") and currentslides < maxslides and dashing == false:
+	
+	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false:
 		sliding = true
+		print("Sliding")
 		EnableNormalMovement = false
 		if direction.length() != 0:
 			velocity.x  += 1500 * direction.x
@@ -93,7 +96,9 @@ func _physics_process(delta):
 	elif sliding == true and EnableNormalMovement == false:
 			velocity = velocity.move_toward(Vector2(0,velocity.y),2000 * delta)
 	
-	
+	TextEdit1.set_line(0,str(get_meta("Health")))
+	if (get_meta("Health")) <= 0:
+		get_tree().quit()
 	move_and_slide()
 func _on_timer_timeout3():
 	print("Working3")
