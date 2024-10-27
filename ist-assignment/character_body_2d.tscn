@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_ihqp5"]
 [ext_resource type="Texture2D" uid="uid://sfpskei2m7xr" path="res://Sprite Sheets/Run.png" id="2_lpoq2"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sfx31"]
-atlas = ExtResource("2_lpoq2")
-region = Rect2(0, 30, 120, 50)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxkoo"]
 atlas = ExtResource("2_lpoq2")
 region = Rect2(120, 30, 120, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfx31"]
+atlas = ExtResource("2_lpoq2")
+region = Rect2(0, 30, 120, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uwalw"]
 atlas = ExtResource("2_lpoq2")
@@ -47,10 +47,10 @@ region = Rect2(1080, 30, 120, 50)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sfx31")
+"texture": SubResource("AtlasTexture_xxkoo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xxkoo")
+"texture": SubResource("AtlasTexture_sfx31")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uwalw")
@@ -84,7 +84,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e7tk"]
 size = Vector2(22.25, 25)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "TextEdit1")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "TextEdit1", "AnimatedSprite")]
 position = Vector2(-1, 0)
 collision_layer = 3
 script = ExtResource("1_ihqp5")
@@ -92,13 +92,14 @@ timer = NodePath("Timer")
 timer2 = NodePath("Timer2")
 timer3 = NodePath("Timer3")
 TextEdit1 = NodePath("TextEdit")
+AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/Health = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-18, 43)
 scale = Vector2(0.66, 0.66)
 sprite_frames = SubResource("SpriteFrames_up5i5")
-frame_progress = 0.0346605
+frame_progress = 0.729866
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-19.875, 46.5)
