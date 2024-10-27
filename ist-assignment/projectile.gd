@@ -6,6 +6,14 @@ const JUMP_VELOCITY = -400.0
 
 
 func _physics_process(delta: float) -> void:
+
 	velocity = get_meta("Direction") * 10
 	
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	
+	if body.name == "Player":
+		print(body.get_meta("Health"))
+		body.set_meta("Health",body.get_meta("Health")-20)

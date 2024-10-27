@@ -10,9 +10,7 @@ var scene = load("res://Projectile.tscn")
 func _physics_process(delta):
 	
 
-	var direction = (Shapecast.get_collision_point(0)-global_position).normalized()
-	velocity.x = direction.x * 300
-	velocity.y = 500
+	
 
 	
 		
@@ -21,17 +19,12 @@ func _physics_process(delta):
 	
 
 
-func _on_area_2d_body_entered(body):
-	if body.name == "CharacterBody2D2":
-			Entered = true
 
 
 
 
 
-func _on_area_2d_body_exited(body):
-	if body.name == "CharacterBody2D2":
-		Entered = false
+
 	
 
 
@@ -41,8 +34,5 @@ func _on_timer_timeout():
 		add_child(dupe)
 		dupe.global_position = global_position
 		dupe.set_meta("Direction",Shapecast.get_collider(0).global_position - global_position)
-	if Entered == true:
-		Shapecast.get_collider(0).set_meta("Health",Shapecast.get_collider(0).get_meta("Health")-20)
-		print(Shapecast.get_collider(0).get_meta("Health"))
-		print("Take Damage")
+	
 		
