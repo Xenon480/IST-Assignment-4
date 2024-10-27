@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://fg6hr0vam70r"]
+[gd_scene load_steps=16 format=3 uid="uid://fg6hr0vam70r"]
 
 [ext_resource type="Script" path="res://theman.gd" id="1_agoay"]
 [ext_resource type="Texture2D" uid="uid://bmircm2t0dbio" path="res://Warrior Enemy/NightBorne.png" id="2_o1k7b"]
@@ -80,14 +80,18 @@ size = Vector2(46, 46)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bg1p1"]
 radius = 77.8203
 
-[node name="Theman" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3d8q6"]
+size = Vector2(300, 150)
+
+[node name="Theman" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast")]
 script = ExtResource("1_agoay")
+Shapecast = NodePath("ShapeCast2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -1)
 scale = Vector2(1.56061, 1.56061)
 sprite_frames = SubResource("SpriteFrames_8wwo4")
-frame_progress = 0.905579
+frame_progress = 0.159276
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -99,6 +103,12 @@ shape = SubResource("RectangleShape2D_oieio")
 shape = SubResource("CircleShape2D_bg1p1")
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_3d8q6")
+target_position = Vector2(411, 1)
+collision_mask = 2
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
