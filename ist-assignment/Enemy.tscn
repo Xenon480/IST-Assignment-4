@@ -92,17 +92,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_le2uy"]
 size = Vector2(300, 250)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "Area2d")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast")]
 script = ExtResource("1_6o3xa")
 Shapecast = NodePath("ShapeCast2D")
-Area2d = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sphxe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ficfu")
-frame_progress = 0.246288
+frame_progress = 0.30781
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(145, 1)

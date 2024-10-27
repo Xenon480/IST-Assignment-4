@@ -5,6 +5,7 @@ var direction = Vector2.ZERO
 @export var timer2 : Timer
 @export var timer3 : Timer
 @export var TextEdit1: TextEdit
+@export var  AnimatedSprite: AnimatedSprite2D
 var maxdashes = 1
 var currentdashes = 0
 var maxslides = 1
@@ -70,13 +71,19 @@ func _physics_process(delta):
 		print(timer.time_left)
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
+		AnimatedSprite.play("default")
+		AnimatedSprite.flip_h = false
 		#velocity.x = direction.x * 500
 	elif Input.is_action_pressed("move_left"):
 		direction.x = -1
+		AnimatedSprite.play("default")
+		AnimatedSprite.flip_h = true
 		##velocity.x = direction.x * 500
 		
 	else:
 		direction.x = 0
+		if AnimatedSprite:
+			AnimatedSprite.pause()
 	
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
