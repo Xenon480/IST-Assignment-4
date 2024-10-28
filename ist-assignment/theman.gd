@@ -14,7 +14,7 @@ func _physics_process(delta):
 	velocity.x = direction.x * 300
 	velocity.y = 500
 
-
+	
 
 	move_and_slide()
 
@@ -22,7 +22,8 @@ func _physics_process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	if body.name == "CharacterBody2D2":
+	
+	if body.name == "Player":
 			Entered = true
 
 
@@ -30,7 +31,7 @@ func _on_area_2d_body_entered(body):
 
 
 func _on_area_2d_body_exited(body):
-	if body.name == "CharacterBody2D2":
+	if body.name == "Player":
 		Entered = false
 
 
@@ -38,6 +39,7 @@ func _on_area_2d_body_exited(body):
 func _on_timer_timeout():
 	
 	if Entered == true:
+		print("AahHAHa")
 		Shapecast.get_collider(0).set_meta("Health",Shapecast.get_collider(0).get_meta("Health")-20)
 		print(Shapecast.get_collider(0).get_meta("Health"))
 		print("Take Damage")
