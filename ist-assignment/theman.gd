@@ -2,18 +2,22 @@ extends CharacterBody2D
 var StartPos = global_position
 @export  var Shapecast: ShapeCast2D
 @export var Area2d: Area2D
-
+@export var AnimatedSprite: AnimatedSprite2D
 var Entered = false
 var PlayerLoc = Vector2.ZERO
 var PlayerBody2D = CharacterBody2D
 
 func _physics_process(delta):
 
-
+	
 	var direction = (Shapecast.get_collision_point(0)-global_position).normalized()
 	velocity.x = direction.x * 300
 	velocity.y = 500
-
+	print(velocity.x)
+	if velocity.x >= -5:
+		AnimatedSprite.play("default")
+	else:
+		AnimatedSprite.stop()
 	
 
 	move_and_slide()

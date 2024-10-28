@@ -84,7 +84,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e7tk"]
 size = Vector2(22.25, 25)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "TextEdit1")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "TextEdit1", "AnimatedSprite")]
 position = Vector2(-1, 0)
 collision_layer = 3
 script = ExtResource("1_ihqp5")
@@ -92,6 +92,7 @@ timer = NodePath("Timer")
 timer2 = NodePath("Timer2")
 timer3 = NodePath("Timer3")
 TextEdit1 = NodePath("TextEdit")
+AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/Health = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
