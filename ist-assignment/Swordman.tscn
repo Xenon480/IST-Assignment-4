@@ -134,6 +134,7 @@ size = Vector2(300, 150)
 script = ExtResource("1_agoay")
 Shapecast = NodePath("ShapeCast2D")
 AnimatedSprite = NodePath("AnimatedSprite2D")
+metadata/Health = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -1)
