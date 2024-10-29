@@ -1,9 +1,10 @@
-[gd_scene load_steps=52 format=3 uid="uid://benrwa8mmy06w"]
+[gd_scene load_steps=56 format=3 uid="uid://benrwa8mmy06w"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_ihqp5"]
 [ext_resource type="Texture2D" uid="uid://sfpskei2m7xr" path="res://Sprite Sheets/Run.png" id="2_lpoq2"]
 [ext_resource type="Texture2D" uid="uid://7wwpsc17py7q" path="res://Sprite Sheets/Dash.png" id="2_pocnw"]
 [ext_resource type="Texture2D" uid="uid://ctj0w256get3c" path="res://Sprite Sheets/Idle.png" id="2_wfsdl"]
+[ext_resource type="Texture2D" uid="uid://b6vliqln6fam1" path="res://Sprite Sheets/Fall.png" id="3_ltmo8"]
 [ext_resource type="Texture2D" uid="uid://ca2igfyudtjm7" path="res://Sprite Sheets/Slide.png" id="4_bwei0"]
 [ext_resource type="Texture2D" uid="uid://cu3xppncnnwya" path="res://Sprite Sheets/Slide End].png" id="6_troxi"]
 [ext_resource type="Texture2D" uid="uid://l81o0c5lbjn7" path="res://Sprite Sheets/Slide Start.png" id="7_i6tpf"]
@@ -17,6 +18,18 @@ region = Rect2(0, 39, 120, 41)
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2avg"]
 atlas = ExtResource("2_pocnw")
 region = Rect2(120, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_157rg"]
+atlas = ExtResource("3_ltmo8")
+region = Rect2(0, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a74ie"]
+atlas = ExtResource("3_ltmo8")
+region = Rect2(120, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lmk4"]
+atlas = ExtResource("3_ltmo8")
+region = Rect2(240, 39, 120, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ttupo"]
 atlas = ExtResource("2_wfsdl")
@@ -178,6 +191,20 @@ animations = [{
 "loop": true,
 "name": &"Dash",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_157rg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a74ie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lmk4")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -352,8 +379,8 @@ metadata/Health = 100
 position = Vector2(-18, 45)
 scale = Vector2(0.66, 0.66)
 sprite_frames = SubResource("SpriteFrames_up5i5")
-animation = &"Slide End"
-frame_progress = 0.486129
+animation = &"Fall"
+frame_progress = 0.337306
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-19.875, 46.5)
