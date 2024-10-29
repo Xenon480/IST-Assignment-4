@@ -49,6 +49,11 @@ region = Rect2(1080, 30, 120, 50)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ficfu"]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rghvu")
@@ -81,13 +86,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_agbny")
 }],
 "loop": true,
-"name": &"default",
+"name": &"new_animation_1",
 "speed": 15.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_le2uy"]
@@ -103,7 +103,8 @@ shape = SubResource("RectangleShape2D_sphxe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ficfu")
-frame_progress = 0.246288
+animation = &"new_animation_1"
+frame_progress = 0.521491
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(145, 1)
