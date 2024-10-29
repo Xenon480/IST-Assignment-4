@@ -222,6 +222,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_le2uy"]
 size = Vector2(300, 250)
 
+<<<<<<< HEAD
 [node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast")]
 script = ExtResource("1_5s3j4")
 Shapecast = NodePath("ShapeCast2D")
@@ -229,12 +230,24 @@ Shapecast = NodePath("ShapeCast2D")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -12)
 shape = SubResource("RectangleShape2D_sphxe")
+=======
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sphxe"]
+size = Vector2(35, 44)
+
+[node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast")]
+position = Vector2(1, -22)
+script = ExtResource("1_5s3j4")
+Shapecast = NodePath("ShapeCast2D")
+>>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(6, -22)
 sprite_frames = SubResource("SpriteFrames_ficfu")
 animation = &"Archer-Death"
+<<<<<<< HEAD
 frame_progress = 0.849457
+=======
+>>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(134, -4)

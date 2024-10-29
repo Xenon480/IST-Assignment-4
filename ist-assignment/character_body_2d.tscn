@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=39 format=3 uid="uid://benrwa8mmy06w"]
+=======
+[gd_scene load_steps=15 format=3 uid="uid://benrwa8mmy06w"]
+>>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_ihqp5"]
 [ext_resource type="Texture2D" uid="uid://sfpskei2m7xr" path="res://Sprite Sheets/Run.png" id="2_lpoq2"]
@@ -246,7 +250,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6e7tk"]
+<<<<<<< HEAD
 size = Vector2(20, 27)
+=======
+size = Vector2(22.25, 25)
+>>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "TextEdit1", "AnimatedSprite")]
 position = Vector2(-1, 0)
@@ -263,8 +271,13 @@ metadata/Health = 100
 position = Vector2(-17, 45)
 scale = Vector2(0.66, 0.66)
 sprite_frames = SubResource("SpriteFrames_up5i5")
+<<<<<<< HEAD
 animation = &"new_animation"
 frame_progress = 0.163398
+=======
+frame = 9
+frame_progress = 0.679813
+>>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-21, 45.5)

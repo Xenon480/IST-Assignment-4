@@ -31,7 +31,6 @@ func _physics_process(delta):
 
 func _on_timer_timeout():
 	if Shapecast.get_collider(0):
-		AnimatedSprite.play("Archer-Shoot")
 		var dupe = scene.instantiate()
 		add_child(dupe)
 		dupe.global_position = global_position

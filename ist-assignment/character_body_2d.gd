@@ -16,8 +16,6 @@ var sliding = false
 var onlyonce = false
 var timeframe = false
 var EnableNormalMovement = true
-var Entered = false 
-var body2 = CharacterBody2D.new()
 func wait(seconds: float) -> void:
 
 	await get_tree().create_timer(seconds).timeout
@@ -44,10 +42,13 @@ func _ready():
 	
 func _physics_process(delta):
 	TextEdit1.set_line(0,str(get_meta("Health")))
+<<<<<<< HEAD
 	if Input.is_action_just_pressed("LeftClick"):
 		if Entered == true:
 			body2.set_meta("Health",body2.get_meta("Health")-20)
 			print("Teeeeeee")
+=======
+>>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false:
 		sliding = true
 		print("Sliding")
@@ -106,7 +107,7 @@ func _physics_process(delta):
 		EnableNormalMovement = true
 	if EnableNormalMovement == true :
 		
-		velocity = velocity.move_toward(Vector2(direction.x* 500,velocity.y),2300 * delta)
+		velocity = velocity.move_toward(Vector2(direction.x* 700,velocity.y),2300 * delta)
 	elif sliding == true and EnableNormalMovement == false:
 			velocity = velocity.move_toward(Vector2(0,velocity.y),2000 * delta)
 	
@@ -119,12 +120,3 @@ func _on_timer_timeout3():
 	currentslides = 0
 	sliding =  false
 	onlyonce = false
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	Entered = true 
-	body2 = body
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	Entered = false
-	body = CharacterBody2D.new()
