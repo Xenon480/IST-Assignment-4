@@ -19,4 +19,3 @@ position = Vector2(55, 22)
 
 [node name="Archer" parent="." instance=ExtResource("5_584uq")]
 position = Vector2(-17, 180)
-metadata/Health = 100
