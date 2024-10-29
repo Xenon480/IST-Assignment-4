@@ -222,17 +222,20 @@ size = Vector2(300, 250)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sphxe"]
 size = Vector2(35, 44)
 
-[node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "AnimatedSprite")]
+[node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "DeathTimer", "StunTimer", "AnimatedSprite")]
 position = Vector2(1, -22)
 script = ExtResource("1_5s3j4")
 Shapecast = NodePath("ShapeCast2D")
+DeathTimer = NodePath("DeathTimer")
+StunTimer = NodePath("StunTimer")
 AnimatedSprite = NodePath("AnimatedSprite2D")
+metadata/Health = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(6, -8)
 sprite_frames = SubResource("SpriteFrames_ficfu")
-animation = &"Archer-Shoot"
-frame_progress = 0.965173
+animation = &"Archer-Idle"
+frame_progress = 0.447429
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(134, -4)
@@ -249,4 +252,12 @@ position = Vector2(1444, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sphxe")
 
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StunTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

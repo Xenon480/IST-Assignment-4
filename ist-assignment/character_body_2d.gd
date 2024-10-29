@@ -4,6 +4,11 @@ var direction = Vector2.ZERO
 @export var timer : Timer
 @export var timer2 : Timer
 @export var timer3 : Timer
+@export var timer4 : Timer
+@export var timer5 : Timer
+@export var SlidingAnimationStart: Timer
+@export var SlidingAnimationMiddle : Timer
+@export var SlidingAnimationEnd : Timer
 @export var TextEdit1: TextEdit
 @export var  AnimatedSprite: AnimatedSprite2D
 var maxdashes = 1
@@ -16,6 +21,10 @@ var onlyonce = false
 var timeframe = false
 var EnableNormalMovement = true
 var Entered = false 
+var swinging = false
+var dashinganimation = false
+var slidinganimation = false
+
 var body2 = CharacterBody2D.new()
 func wait(seconds: float) -> void:
 
@@ -35,7 +44,7 @@ func _on_timer_timeout2():
 	
 		
 		
-
+var SwingCounter = 0
 func _ready():
 	timer.timeout.connect(_on_timer_timeout)
 	timer2.timeout.connect(_on_timer_timeout2)
@@ -43,17 +52,31 @@ func _ready():
 	
 func _physics_process(delta):
 	TextEdit1.set_line(0,str(get_meta("Health")))
-	if Input.is_action_just_pressed("LeftClick"):
-		if Entered == true and body2 != CharacterBody2D.new() :
+	if Input.is_action_just_pressed("LeftClick") and swinging == false and dashinganimation == false and slidinganimation == false:
+		
+		SwingCounter += 1
+		if SwingCounter % 2 != 0:
+			print("lalala")
+			AnimatedSprite.play("Swing 1")
+			swinging = true
+			timer4.start(0.4)
+		else:
+			AnimatedSprite.play("Swing 2")
+			swinging = true
+			timer4.start(0.5)
+		if Entered == true and body2 is CharacterBody2D:
 			body2.set_meta("Health",body2.get_meta("Health")-20) 
-			print("Teeeeeee")
+			print(body2.get_meta("Health"))
 	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false:
 		sliding = true
+		slidinganimation = true
+		SlidingAnimationStart.start(0.001)
 		print("Sliding")
+		
 		EnableNormalMovement = false
 		if direction.length() != 0:
 			velocity.x  += 1500 * direction.x
-			timer2.start(0.5)
+			timer2.start(0.2)
 		else:
 			velocity.x += 1500
 			
@@ -64,10 +87,13 @@ func _physics_process(delta):
 		timer3.start(5)
 	if Input.is_action_just_pressed("Dash") and currentdashes < maxdashes and sliding == false :
 		dashing = true 
+		AnimatedSprite.play("Dash")
+		dashinganimation = true
+		timer5.start(0.4)
 		if direction.length() != 0:
-				velocity.x += 1000 * direction.x
+				velocity.x += 1500 * direction.x
 		else:
-			velocity.x += 1000
+			velocity.x += 1500
 	
 		currentdashes += 1 
 	if currentdashes >= maxdashes and onlyonce == false:
@@ -77,19 +103,22 @@ func _physics_process(delta):
 		print(timer.time_left)
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
-		AnimatedSprite.play("default")
+		if swinging == false and dashinganimation == false and slidinganimation == false:
+			AnimatedSprite.play("Run")
 		AnimatedSprite.flip_h = false
 		#velocity.x = direction.x * 500
 	elif Input.is_action_pressed("move_left"):
 		direction.x = -1
-		AnimatedSprite.play("default")
+		if swinging == false and dashinganimation == false and slidinganimation == false:
+			AnimatedSprite.play("Run")
+		
 		AnimatedSprite.flip_h = true
 		##velocity.x = direction.x * 500
 		
 	else:
 		direction.x = 0
-		if AnimatedSprite:
-			AnimatedSprite.pause()
+		if swinging == false and dashinganimation == false and slidinganimation == false:
+			AnimatedSprite.play("Idle")
 	
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -127,3 +156,27 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	Entered = false
 	body = CharacterBody2D.new()
+
+
+func _on_timer_4_timeout() -> void:
+	swinging = false
+
+
+func _on_timer_5_timeout() -> void:
+	dashinganimation = false
+
+
+func _on_sliding_animation_start_timeout() -> void:
+	AnimatedSprite.play("Slide Start")
+	SlidingAnimationMiddle.start(0.3)
+
+
+
+func _on_sliding_animation_middle_timeout() -> void:
+	AnimatedSprite.play("Slide")
+	SlidingAnimationEnd.start(0.3)
+
+
+func _on_sliding_animation_end_timeout() -> void:
+	AnimatedSprite.play("Slide End")
+	slidinganimation = false

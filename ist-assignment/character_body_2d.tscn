@@ -332,13 +332,18 @@ size = Vector2(22.25, 25)
 [sub_resource type="CircleShape2D" id="CircleShape2D_26s36"]
 radius = 35.6931
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "TextEdit1", "AnimatedSprite")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "TextEdit1", "AnimatedSprite")]
 position = Vector2(-1, 0)
 collision_layer = 3
 script = ExtResource("1_ihqp5")
 timer = NodePath("Timer")
 timer2 = NodePath("Timer2")
 timer3 = NodePath("Timer3")
+timer4 = NodePath("Timer4")
+timer5 = NodePath("Timer5")
+SlidingAnimationStart = NodePath("SlidingAnimationStart")
+SlidingAnimationMiddle = NodePath("SlidingAnimationMiddle")
+SlidingAnimationEnd = NodePath("SlidingAnimationEnd")
 TextEdit1 = NodePath("TextEdit")
 AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/Health = 100
@@ -347,7 +352,8 @@ metadata/Health = 100
 position = Vector2(-18, 45)
 scale = Vector2(0.66, 0.66)
 sprite_frames = SubResource("SpriteFrames_up5i5")
-animation = &"Dash"
+animation = &"Slide End"
+frame_progress = 0.486129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-19.875, 46.5)
@@ -378,6 +384,27 @@ placeholder_text = "Health"
 position = Vector2(-20, 46)
 shape = SubResource("CircleShape2D_26s36")
 
+[node name="Timer4" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer5" type="Timer" parent="."]
+one_shot = true
+
+[node name="SlidingAnimationStart" type="Timer" parent="."]
+one_shot = true
+
+[node name="SlidingAnimationMiddle" type="Timer" parent="."]
+one_shot = true
+
+[node name="SlidingAnimationEnd" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="text_set" from="TextEdit" to="." method="_on_text_edit_text_set"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer4" to="." method="_on_timer_4_timeout"]
+[connection signal="timeout" from="Timer5" to="." method="_on_timer_5_timeout"]
+[connection signal="timeout" from="SlidingAnimationStart" to="." method="_on_sliding_animation_start_timeout"]
+[connection signal="timeout" from="SlidingAnimationMiddle" to="." method="_on_sliding_animation_middle_timeout"]
+[connection signal="timeout" from="SlidingAnimationEnd" to="." method="_on_sliding_animation_end_timeout"]
