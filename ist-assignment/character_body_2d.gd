@@ -99,7 +99,7 @@ func _physics_process(delta):
 		EnableNormalMovement = true
 	if EnableNormalMovement == true :
 		
-		velocity = velocity.move_toward(Vector2(direction.x* 700,velocity.y),2300 * delta)
+		velocity = velocity.move_toward(Vector2(direction.x* 500,velocity.y),2300 * delta)
 	elif sliding == true and EnableNormalMovement == false:
 			velocity = velocity.move_toward(Vector2(0,velocity.y),2000 * delta)
 	

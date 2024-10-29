@@ -222,16 +222,17 @@ size = Vector2(300, 250)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sphxe"]
 size = Vector2(35, 44)
 
-[node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast")]
+[node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "AnimatedSprite")]
 position = Vector2(1, -22)
 script = ExtResource("1_5s3j4")
 Shapecast = NodePath("ShapeCast2D")
+AnimatedSprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(6, -8)
 sprite_frames = SubResource("SpriteFrames_ficfu")
-animation = &"Archer-Death"
-frame_progress = 0.849457
+animation = &"Archer-Shoot"
+frame_progress = 0.965173
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(134, -4)
