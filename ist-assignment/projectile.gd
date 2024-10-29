@@ -7,7 +7,7 @@ const JUMP_VELOCITY = -400.0
 
 func _physics_process(delta: float) -> void:
 
-	velocity = get_meta("Direction") * 100
+	velocity = get_meta("Direction") * 500
 
 	move_and_slide()
 
