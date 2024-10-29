@@ -1,14 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://daxm737snsble"]
 
-[ext_resource type="PackedScene" uid="uid://b3dhcs6fov3dd" path="res://Enemy.tscn" id="1_j7y5e"]
 [ext_resource type="PackedScene" uid="uid://drjj30mex81by" path="res://Tilemap.tscn" id="2_86dq5"]
 [ext_resource type="PackedScene" uid="uid://fg6hr0vam70r" path="res://Swordman.tscn" id="4_wycpy"]
 [ext_resource type="PackedScene" uid="uid://benrwa8mmy06w" path="res://character_body_2d.tscn" id="5_1mo3v"]
+[ext_resource type="PackedScene" uid="uid://bv4yquhcrcg6u" path="res://Archer.tscn" id="5_584uq"]
 
 [node name="Node2D" type="Node2D"]
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_j7y5e")]
-position = Vector2(-10, 188)
 
 [node name="TileMap" parent="." instance=ExtResource("2_86dq5")]
 position = Vector2(310, 91)
@@ -19,3 +16,6 @@ position = Vector2(327, -11)
 
 [node name="Theman" parent="." instance=ExtResource("4_wycpy")]
 position = Vector2(55, 22)
+
+[node name="Archer" parent="." instance=ExtResource("5_584uq")]
+position = Vector2(-17, 180)
