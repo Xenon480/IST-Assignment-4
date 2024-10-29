@@ -19,11 +19,15 @@ position = Vector2(55, 22)
 
 [node name="Archer" parent="." instance=ExtResource("5_584uq")]
 <<<<<<< HEAD
+<<<<<<< HEAD
 position = Vector2(-17, 180)
 <<<<<<< Updated upstream
 =======
 metadata/Health = 100
 >>>>>>> Stashed changes
+=======
+position = Vector2(-17, 195)
+>>>>>>> parent of 05bb3e8 (REALCOMMITREAAAAAAAAAAAAL)
 =======
 position = Vector2(-17, 195)
 >>>>>>> parent of 05bb3e8 (REALCOMMITREAAAAAAAAAAAAL)
