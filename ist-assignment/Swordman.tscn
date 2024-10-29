@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://fg6hr0vam70r"]
+[gd_scene load_steps=22 format=3 uid="uid://b6ky51hpnw00j"]
 
 [ext_resource type="Script" path="res://theman.gd" id="1_agoay"]
-[ext_resource type="Texture2D" uid="uid://bmircm2t0dbio" path="res://Warrior Enemy/NightBorne.png" id="2_o1k7b"]
+[ext_resource type="Texture2D" path="res://Warrior Enemy/NightBorne.png" id="2_o1k7b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_424f3"]
 atlas = ExtResource("2_o1k7b")
@@ -134,7 +134,6 @@ size = Vector2(300, 150)
 script = ExtResource("1_agoay")
 Shapecast = NodePath("ShapeCast2D")
 AnimatedSprite = NodePath("AnimatedSprite2D")
-metadata/Health = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -1)

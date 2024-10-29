@@ -43,10 +43,6 @@ func _ready():
 	
 func _physics_process(delta):
 	TextEdit1.set_line(0,str(get_meta("Health")))
-	if Input.is_action_just_pressed("LeftClick"):
-		if Entered == true and body2 != CharacterBody2D.new() :
-			body2.set_meta("Health",body2.get_meta("Health")-20) 
-			print("Teeeeeee")
 	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false:
 		sliding = true
 		print("Sliding")

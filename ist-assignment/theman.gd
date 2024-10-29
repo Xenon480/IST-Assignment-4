@@ -8,8 +8,6 @@ var PlayerLoc = Vector2.ZERO
 var PlayerBody2D = CharacterBody2D
 
 func _physics_process(delta):
-	if get_meta("Health") <= 0:
-		queue_free()
 	
 	var direction = (Shapecast.get_collision_point(0)-global_position).normalized()
 	velocity.x = direction.x * 300

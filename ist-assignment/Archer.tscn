@@ -1,8 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://bv4yquhcrcg6u"]
+[gd_scene load_steps=34 format=3 uid="uid://cqb4i6utwsjy4"]
 
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_5s3j4"]
-[ext_resource type="Texture2D" uid="uid://cbejitrhgvs24" path="res://GandalfHardcore Archer/GandalfHardcore Archer purple sheet.png" id="2_4xdhp"]
+[ext_resource type="Texture2D" path="res://GandalfHardcore Archer/GandalfHardcore Archer purple sheet.png" id="2_4xdhp"]
 [ext_resource type="PackedScene" uid="uid://cibpsnn7ctoph" path="res://Projectile.tscn" id="3_4nq8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sphxe"]
+size = Vector2(35, 44)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vm4xy"]
 atlas = ExtResource("2_4xdhp")
@@ -219,20 +222,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_le2uy"]
 size = Vector2(300, 250)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sphxe"]
-size = Vector2(35, 44)
-
-[node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "AnimatedSprite")]
-position = Vector2(1, -22)
+[node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast")]
 script = ExtResource("1_5s3j4")
 Shapecast = NodePath("ShapeCast2D")
-AnimatedSprite = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -12)
+shape = SubResource("RectangleShape2D_sphxe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(6, -8)
+position = Vector2(6, -22)
 sprite_frames = SubResource("SpriteFrames_ficfu")
-animation = &"Archer-Shoot"
-frame_progress = 0.965173
+animation = &"Archer-Death"
+frame_progress = 0.849457
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(134, -4)
@@ -245,8 +247,5 @@ autostart = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_4nq8k")]
 position = Vector2(1444, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_sphxe")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
