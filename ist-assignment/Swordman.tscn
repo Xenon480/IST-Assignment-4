@@ -1,0 +1,165 @@
+[gd_scene load_steps=22 format=3 uid="uid://b6ky51hpnw00j"]
+
+[ext_resource type="Script" path="res://theman.gd" id="1_agoay"]
+[ext_resource type="Texture2D" path="res://Warrior Enemy/NightBorne.png" id="2_o1k7b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_424f3"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(0, 108, 80, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbvk3"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(80, 108, 80, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj5f6"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(160, 108, 80, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0bua"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(240, 108, 80, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x6j7"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(320, 108, 80, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jufrd"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(400, 108, 80, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4qqd"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(0, 33, 80, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33qp5"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(80, 33, 80, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq34l"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(160, 33, 80, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0xwh"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(240, 33, 80, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2me6"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(320, 33, 80, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfnwp"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(400, 33, 80, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5war"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(480, 33, 80, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f55wr"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(560, 33, 80, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yehy"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(640, 33, 80, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8wwo4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_424f3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbvk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fj5f6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0bua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5x6j7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jufrd")
+}],
+"loop": true,
+"name": &"Sword-enemy-Run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4qqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33qp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq34l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0xwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2me6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfnwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5war")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f55wr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yehy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oieio"]
+size = Vector2(46, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f63c3"]
+size = Vector2(249, 141)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3d8q6"]
+size = Vector2(300, 150)
+
+[node name="Theman" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "AnimatedSprite")]
+script = ExtResource("1_agoay")
+Shapecast = NodePath("ShapeCast2D")
+AnimatedSprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -1)
+scale = Vector2(1.56061, 1.56061)
+sprite_frames = SubResource("SpriteFrames_8wwo4")
+animation = &"Sword-enemy-Run"
+frame_progress = 0.408237
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_oieio")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5, 1)
+shape = SubResource("RectangleShape2D_f63c3")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_3d8q6")
+target_position = Vector2(146, 4)
+collision_mask = 2
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

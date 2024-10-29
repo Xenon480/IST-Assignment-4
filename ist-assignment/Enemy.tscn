@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://b3dhcs6fov3dd"]
+[gd_scene load_steps=17 format=3 uid="uid://b3dhcs6fov3dd"]
 
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_6o3xa"]
 [ext_resource type="Texture2D" uid="uid://sfpskei2m7xr" path="res://Sprite Sheets/Run.png" id="2_q8mi2"]
 [ext_resource type="PackedScene" uid="uid://cibpsnn7ctoph" path="res://Projectile.tscn" id="3_mc57a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sphxe"]
+size = Vector2(29, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rghvu"]
 atlas = ExtResource("2_q8mi2")
@@ -89,29 +90,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0j314"]
-radius = 47.0956
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_le2uy"]
 size = Vector2(300, 250)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "Area2d")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast")]
 script = ExtResource("1_6o3xa")
 Shapecast = NodePath("ShapeCast2D")
-Area2d = NodePath("Area2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.5, 5)
 shape = SubResource("RectangleShape2D_sphxe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ficfu")
 frame_progress = 0.246288
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1, 0)
-shape = SubResource("CircleShape2D_0j314")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(145, 1)
@@ -125,6 +117,4 @@ autostart = true
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_mc57a")]
 position = Vector2(1444, 0)
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

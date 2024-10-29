@@ -4,6 +4,8 @@ var direction = Vector2.ZERO
 @export var timer : Timer
 @export var timer2 : Timer
 @export var timer3 : Timer
+@export var TextEdit1: TextEdit
+@export var  AnimatedSprite: AnimatedSprite2D
 var maxdashes = 1
 var currentdashes = 0
 var maxslides = 1
@@ -38,8 +40,10 @@ func _ready():
 	timer3.timeout.connect(_on_timer_timeout3)
 	
 func _physics_process(delta):
-	if Input.is_action_just_pressed("Slide") and currentslides < maxslides and dashing == false:
+	TextEdit1.set_line(0,str(get_meta("Health")))
+	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false:
 		sliding = true
+		print("Sliding")
 		EnableNormalMovement = false
 		if direction.length() != 0:
 			velocity.x  += 1500 * direction.x
@@ -67,13 +71,19 @@ func _physics_process(delta):
 		print(timer.time_left)
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
+		AnimatedSprite.play("default")
+		AnimatedSprite.flip_h = false
 		#velocity.x = direction.x * 500
 	elif Input.is_action_pressed("move_left"):
 		direction.x = -1
+		AnimatedSprite.play("default")
+		AnimatedSprite.flip_h = true
 		##velocity.x = direction.x * 500
 		
 	else:
 		direction.x = 0
+		if AnimatedSprite:
+			AnimatedSprite.pause()
 	
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -93,7 +103,9 @@ func _physics_process(delta):
 	elif sliding == true and EnableNormalMovement == false:
 			velocity = velocity.move_toward(Vector2(0,velocity.y),2000 * delta)
 	
-	
+
+	if (get_meta("Health")) <= 0:
+		get_tree().quit()
 	move_and_slide()
 func _on_timer_timeout3():
 	print("Working3")
