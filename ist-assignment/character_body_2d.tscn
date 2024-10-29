@@ -288,6 +288,7 @@ sprite_frames = SubResource("SpriteFrames_up5i5")
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 animation = &"new_animation"
 frame_progress = 0.163398
 =======
@@ -302,6 +303,9 @@ frame_progress = 0.679813
 frame = 9
 frame_progress = 0.679813
 >>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
+=======
+frame_progress = 0.128853
+>>>>>>> parent of d9fa4fa (fffeffe)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-21, 45.5)
