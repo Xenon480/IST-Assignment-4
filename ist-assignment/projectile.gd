@@ -14,6 +14,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	
+	if body.name == "TileMap":
+		queue_free()
 	if body.name == "Player":
 		print(body.get_meta("Health"))
 		body.set_meta("Health",body.get_meta("Health")-20)

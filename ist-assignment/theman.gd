@@ -13,13 +13,17 @@ func _physics_process(delta):
 	var direction = (Shapecast.get_collision_point(0)-global_position).normalized()
 	velocity.x = direction.x * 300
 	velocity.y = 500
-	print(velocity.x)
-	if velocity.x >= -5 :
-		print("AKlaLAa")
+	
+	if velocity.x <= 0:
+		AnimatedSprite.flip_h = true
+	else:
+		AnimatedSprite.flip_h = false
+	if velocity.x >= -5 and velocity.x <= 0 :
+	
 		AnimatedSprite.play("default")
 	else:
-		AnimatedSprite.stop()
-
+		
+		AnimatedSprite.play("Sword-enemy-Run")
 	
 
 	move_and_slide()
