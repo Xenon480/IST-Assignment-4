@@ -1,31 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://fg6hr0vam70r"]
+[gd_scene load_steps=22 format=3 uid="uid://b6ky51hpnw00j"]
 
 [ext_resource type="Script" path="res://theman.gd" id="1_agoay"]
 [ext_resource type="Texture2D" uid="uid://bmircm2t0dbio" path="res://Warrior Enemy/NightBorne.png" id="2_o1k7b"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_424f3"]
-atlas = ExtResource("2_o1k7b")
-region = Rect2(0, 108, 80, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fbvk3"]
-atlas = ExtResource("2_o1k7b")
-region = Rect2(80, 108, 80, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fj5f6"]
-atlas = ExtResource("2_o1k7b")
-region = Rect2(160, 108, 80, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q0bua"]
-atlas = ExtResource("2_o1k7b")
-region = Rect2(240, 108, 80, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5x6j7"]
-atlas = ExtResource("2_o1k7b")
-region = Rect2(320, 108, 80, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jufrd"]
-atlas = ExtResource("2_o1k7b")
-region = Rect2(400, 108, 80, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g4qqd"]
 atlas = ExtResource("2_o1k7b")
@@ -63,31 +39,32 @@ region = Rect2(560, 33, 80, 33)
 atlas = ExtResource("2_o1k7b")
 region = Rect2(640, 33, 80, 33)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_424f3"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(0, 108, 80, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbvk3"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(80, 108, 80, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj5f6"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(160, 108, 80, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0bua"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(240, 108, 80, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x6j7"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(320, 108, 80, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jufrd"]
+atlas = ExtResource("2_o1k7b")
+region = Rect2(400, 108, 80, 36)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_8wwo4"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_424f3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fbvk3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fj5f6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q0bua")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5x6j7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jufrd")
-}],
-"loop": true,
-"name": &"Sword-enemy-Run",
-"speed": 10.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_g4qqd")
@@ -117,7 +94,30 @@ animations = [{
 "texture": SubResource("AtlasTexture_7yehy")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Sword-enemy-Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_424f3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbvk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fj5f6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0bua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5x6j7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jufrd")
+}],
+"loop": true,
+"name": &"Sword-enemy-Run",
 "speed": 10.0
 }]
 
@@ -140,8 +140,7 @@ metadata/Health = 100
 position = Vector2(-2, -1)
 scale = Vector2(1.56061, 1.56061)
 sprite_frames = SubResource("SpriteFrames_8wwo4")
-animation = &"Sword-enemy-Run"
-frame_progress = 0.408237
+animation = &"Sword-enemy-Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
