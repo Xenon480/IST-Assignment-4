@@ -44,8 +44,8 @@ func _ready():
 func _physics_process(delta):
 	TextEdit1.set_line(0,str(get_meta("Health")))
 	if Input.is_action_just_pressed("LeftClick"):
-		if Entered == true:
-			body2.set_meta("Health",body2.get_meta("Health")-20)
+		if Entered == true and body2 != CharacterBody2D.new() :
+			body2.set_meta("Health",body2.get_meta("Health")-20) 
 			print("Teeeeeee")
 	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false:
 		sliding = true
@@ -65,7 +65,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Dash") and currentdashes < maxdashes and sliding == false :
 		dashing = true 
 		if direction.length() != 0:
-				velocity.x += 300 * direction.x
+				velocity.x += 1000 * direction.x
 		else:
 			velocity.x += 1000
 	
