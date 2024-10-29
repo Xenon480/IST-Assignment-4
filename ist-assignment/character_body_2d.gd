@@ -40,7 +40,7 @@ func _ready():
 	timer3.timeout.connect(_on_timer_timeout3)
 	
 func _physics_process(delta):
-	
+	TextEdit1.set_line(0,str(get_meta("Health")))
 	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false:
 		sliding = true
 		print("Sliding")
@@ -103,7 +103,7 @@ func _physics_process(delta):
 	elif sliding == true and EnableNormalMovement == false:
 			velocity = velocity.move_toward(Vector2(0,velocity.y),2000 * delta)
 	
-	TextEdit1.set_line(0,str(get_meta("Health")))
+
 	if (get_meta("Health")) <= 0:
 		get_tree().quit()
 	move_and_slide()

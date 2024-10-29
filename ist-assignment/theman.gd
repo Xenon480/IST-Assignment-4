@@ -14,10 +14,12 @@ func _physics_process(delta):
 	velocity.x = direction.x * 300
 	velocity.y = 500
 	print(velocity.x)
-	if velocity.x >= -5:
+	if velocity.x >= -5 :
+		print("AKlaLAa")
 		AnimatedSprite.play("default")
 	else:
 		AnimatedSprite.stop()
+
 	
 
 	move_and_slide()
