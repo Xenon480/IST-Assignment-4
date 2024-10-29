@@ -4,12 +4,17 @@ var StartPos = global_position
 @export var Area2d: Area2D
 @export var AnimatedSprite: AnimatedSprite2D
 @export var StunTimer: Timer
+@export var SlashingTimer: Timer
+@export var DelayTimer: Timer
+@export var DeathTimer: Timer
 var Entered = false
 var PlayerLoc = Vector2.ZERO
 var PlayerBody2D = CharacterBody2D
 var temphealth = 100
 var gettinghit = false
 var onlyonce2 = false
+var slashing = false 
+var onlyonce = false
 func _physics_process(delta):
 	
 	if temphealth != get_meta("Health"):
@@ -19,8 +24,7 @@ func _physics_process(delta):
 	elif onlyonce2 == false:
 		StunTimer.start(0.3)
 	
-	if get_meta("Health") <= 0:
-		queue_free()
+	
 	
 	var direction = (Shapecast.get_collision_point(0)-global_position).normalized()
 	velocity.x = direction.x * 300
@@ -32,11 +36,16 @@ func _physics_process(delta):
 		AnimatedSprite.flip_h = false
 	if velocity.x >= -5 and velocity.x <= 0 :
 	
-		AnimatedSprite.play("default")
-	elif gettinghit == false:
+		AnimatedSprite.play("Sword-enemy-Idle")
+	elif gettinghit == false and slashing == false:
 		
 		AnimatedSprite.play("Sword-enemy-Run")
-	
+		
+	if get_meta("Health") <= 0:
+		AnimatedSprite.play("Sword-enemy-Death")
+		if onlyonce == false:
+			onlyonce = true
+			DeathTimer.start(1.5)
 
 	move_and_slide()
 
@@ -60,10 +69,13 @@ func _on_area_2d_body_exited(body):
 
 func _on_timer_timeout():
 	
-	if Entered == true and gettinghit == false:
+	if Entered == true and gettinghit == false and slashing == false:
 		print("AahHAHa")
+		slashing = true
+		SlashingTimer.start(1)
+		DelayTimer.start(0.8)
 		AnimatedSprite.play("Sword-enemy-Slash")
-		Shapecast.get_collider(0).set_meta("Health",Shapecast.get_collider(0).get_meta("Health")-20)
+		
 		print(Shapecast.get_collider(0).get_meta("Health"))
 		print("Take Damage")
 
@@ -71,3 +83,18 @@ func _on_timer_timeout():
 func _on_stun_timer_timeout() -> void:
 	gettinghit = false
 	onlyonce2 = false
+
+
+func _on_slashing_timer_timeout() -> void:
+
+	slashing = false
+
+
+func _on_damage_delay_timeout() -> void:
+	if Shapecast.get_collider(0) and Entered == true:
+		Shapecast.get_collider(0).set_meta("Health",Shapecast.get_collider(0).get_meta("Health")-20)
+
+
+func _on_death_timer_timeout() -> void:
+	print("kAKLakAKA")
+	queue_free()
