@@ -10,6 +10,10 @@ var PlayerBody2D = CharacterBody2D
 func _physics_process(delta):
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 =======
 
 >>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)

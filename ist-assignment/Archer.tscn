@@ -239,6 +239,9 @@ position = Vector2(1, -22)
 script = ExtResource("1_5s3j4")
 Shapecast = NodePath("ShapeCast2D")
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
+=======
 >>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 =======
 >>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
@@ -249,7 +252,10 @@ sprite_frames = SubResource("SpriteFrames_ficfu")
 animation = &"Archer-Death"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 frame_progress = 0.849457
+=======
+>>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 =======
 >>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 =======

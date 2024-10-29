@@ -44,10 +44,13 @@ func _physics_process(delta):
 	TextEdit1.set_line(0,str(get_meta("Health")))
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if Input.is_action_just_pressed("LeftClick"):
 		if Entered == true:
 			body2.set_meta("Health",body2.get_meta("Health")-20)
 			print("Teeeeeee")
+=======
+>>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 =======
 >>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 =======
