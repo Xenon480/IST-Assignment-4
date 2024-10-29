@@ -45,6 +45,7 @@ func _physics_process(delta):
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if Input.is_action_just_pressed("LeftClick"):
 		if Entered == true:
 			body2.set_meta("Health",body2.get_meta("Health")-20)
@@ -55,6 +56,8 @@ func _physics_process(delta):
 >>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
 =======
 >>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
+=======
+>>>>>>> parent of 8d14f54 (dddd)
 	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false:
 		sliding = true
 		print("Sliding")

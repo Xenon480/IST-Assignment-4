@@ -11,6 +11,7 @@ func _physics_process(delta):
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
@@ -20,6 +21,9 @@ func _physics_process(delta):
 =======
 
 >>>>>>> parent of a264970 (Merge branch 'main' of https://github.com/Xenon480/IST-Assignment-4)
+=======
+
+>>>>>>> parent of 8d14f54 (dddd)
 	
 	var direction = (Shapecast.get_collision_point(0)-global_position).normalized()
 	velocity.x = direction.x * 300
