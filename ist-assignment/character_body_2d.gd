@@ -9,7 +9,9 @@ var direction = Vector2.ZERO
 @export var SlidingAnimationStart: Timer
 @export var SlidingAnimationMiddle : Timer
 @export var SlidingAnimationEnd : Timer
+@export var JumpingTimer: Timer
 @export var TextEdit1: TextEdit
+var jump = false
 @export var  AnimatedSprite: AnimatedSprite2D
 var maxdashes = 1
 var currentdashes = 0
@@ -51,8 +53,10 @@ func _ready():
 	timer3.timeout.connect(_on_timer_timeout3)
 	
 func _physics_process(delta):
+	if is_on_floor() == false and jump == false:
+		AnimatedSprite.play("Fall")
 	TextEdit1.set_line(0,str(get_meta("Health")))
-	if Input.is_action_just_pressed("LeftClick") and swinging == false and dashinganimation == false and slidinganimation == false:
+	if Input.is_action_just_pressed("LeftClick") and swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
 		
 		SwingCounter += 1
 		if SwingCounter % 2 != 0:
@@ -103,13 +107,13 @@ func _physics_process(delta):
 		print(timer.time_left)
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
-		if swinging == false and dashinganimation == false and slidinganimation == false:
+		if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
 			AnimatedSprite.play("Run")
 		AnimatedSprite.flip_h = false
 		#velocity.x = direction.x * 500
 	elif Input.is_action_pressed("move_left"):
 		direction.x = -1
-		if swinging == false and dashinganimation == false and slidinganimation == false:
+		if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
 			AnimatedSprite.play("Run")
 		
 		AnimatedSprite.flip_h = true
@@ -117,12 +121,15 @@ func _physics_process(delta):
 		
 	else:
 		direction.x = 0
-		if swinging == false and dashinganimation == false and slidinganimation == false:
+		if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
 			AnimatedSprite.play("Idle")
 	
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = -800
+		jump = true
+		AnimatedSprite.play("Jump")
+		JumpingTimer.start(0.2)
 	else:
 		velocity.y += 50
 	
@@ -180,3 +187,9 @@ func _on_sliding_animation_middle_timeout() -> void:
 func _on_sliding_animation_end_timeout() -> void:
 	AnimatedSprite.play("Slide End")
 	slidinganimation = false
+
+
+func _on_jumping_timer_timeout() -> void:
+	jump = false
+	
+	

@@ -425,18 +425,19 @@ size = Vector2(249, 141)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d8q6"]
 size = Vector2(300, 150)
 
-[node name="Theman" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "AnimatedSprite")]
+[node name="Theman" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "AnimatedSprite", "StunTimer")]
 script = ExtResource("1_agoay")
 Shapecast = NodePath("ShapeCast2D")
 AnimatedSprite = NodePath("AnimatedSprite2D")
+StunTimer = NodePath("StunTimer")
 metadata/Health = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -21)
 scale = Vector2(1.56061, 1.56061)
 sprite_frames = SubResource("SpriteFrames_8wwo4")
-animation = &"Sword-enemy-Death"
-frame_progress = 0.875652
+animation = &"Sword-enemy-Slash"
+frame_progress = 0.849737
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -456,6 +457,10 @@ shape = SubResource("RectangleShape2D_3d8q6")
 target_position = Vector2(146, 4)
 collision_mask = 2
 
+[node name="StunTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]

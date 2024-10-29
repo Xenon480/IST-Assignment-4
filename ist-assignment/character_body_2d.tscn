@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://benrwa8mmy06w"]
+[gd_scene load_steps=63 format=3 uid="uid://benrwa8mmy06w"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_ihqp5"]
 [ext_resource type="Texture2D" uid="uid://sfpskei2m7xr" path="res://Sprite Sheets/Run.png" id="2_lpoq2"]
@@ -406,7 +406,7 @@ size = Vector2(22.25, 25)
 [sub_resource type="CircleShape2D" id="CircleShape2D_26s36"]
 radius = 35.6931
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "TextEdit1", "AnimatedSprite")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "JumpingTimer", "TextEdit1", "AnimatedSprite")]
 position = Vector2(-1, 0)
 collision_layer = 3
 script = ExtResource("1_ihqp5")
@@ -418,6 +418,7 @@ timer5 = NodePath("Timer5")
 SlidingAnimationStart = NodePath("SlidingAnimationStart")
 SlidingAnimationMiddle = NodePath("SlidingAnimationMiddle")
 SlidingAnimationEnd = NodePath("SlidingAnimationEnd")
+JumpingTimer = NodePath("JumpingTimer")
 TextEdit1 = NodePath("TextEdit")
 AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/Health = 100
@@ -427,9 +428,7 @@ position = Vector2(-18, 45)
 scale = Vector2(0.66, 0.66)
 sprite_frames = SubResource("SpriteFrames_up5i5")
 animation = &"Fall"
-frame_progress = 0.337306
-animation = &"Jump"
-frame_progress = 0.715647
+frame_progress = 0.966717
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-19.875, 46.5)
@@ -476,6 +475,9 @@ one_shot = true
 [node name="SlidingAnimationEnd" type="Timer" parent="."]
 one_shot = true
 
+[node name="JumpingTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="text_set" from="TextEdit" to="." method="_on_text_edit_text_set"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
@@ -484,3 +486,4 @@ one_shot = true
 [connection signal="timeout" from="SlidingAnimationStart" to="." method="_on_sliding_animation_start_timeout"]
 [connection signal="timeout" from="SlidingAnimationMiddle" to="." method="_on_sliding_animation_middle_timeout"]
 [connection signal="timeout" from="SlidingAnimationEnd" to="." method="_on_sliding_animation_end_timeout"]
+[connection signal="timeout" from="JumpingTimer" to="." method="_on_jumping_timer_timeout"]
