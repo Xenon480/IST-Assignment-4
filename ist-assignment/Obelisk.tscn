@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://dauln67qyof1s"]
+
+[ext_resource type="Texture2D" uid="uid://dgv0f8agbqej8" path="res://Flying Obelisk/FlyingObelisk_no_lightnings_no_letter.png" id="1_y4fyp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhpnn"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(0, 0, 200, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8dwh"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(200, 0, 200, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45nyp"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(400, 0, 200, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dx0w"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(600, 0, 200, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfhd5"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(800, 0, 200, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2g36"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(1000, 0, 200, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ku6b"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(1200, 0, 200, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5rx2"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(1400, 0, 200, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjrhm"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(1600, 0, 200, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg7ai"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(1800, 0, 200, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3p87"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(2000, 0, 200, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql46b"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(2200, 0, 200, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofryw"]
+atlas = ExtResource("1_y4fyp")
+region = Rect2(2400, 0, 200, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t8lsx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhpnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8dwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45nyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dx0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfhd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2g36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ku6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5rx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjrhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg7ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3p87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql46b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofryw")
+}],
+"loop": true,
+"name": &"Float_Idle",
+"speed": 8.0
+}]
+
+[node name="Node2D" type="Area2D"]
+scale = Vector2(0.2, 0.2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t8lsx")
+animation = &"Float_Idle"
+autoplay = "Float_Idle"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 169, 42, 113, 28, -94, 1, -127, -23, -84, -37, 113)

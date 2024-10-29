@@ -231,7 +231,6 @@ Shapecast = NodePath("ShapeCast2D")
 position = Vector2(6, -8)
 sprite_frames = SubResource("SpriteFrames_ficfu")
 animation = &"Archer-Death"
-frame_progress = 0.849457
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(134, -4)
