@@ -60,25 +60,25 @@ region = Rect2(960, 39, 120, 41)
 atlas = ExtResource("2_wfsdl")
 region = Rect2(1080, 39, 120, 41)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_okgw2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpohp"]
 atlas = ExtResource("4_dwlw0")
-region = Rect2(0, 0, 120, 80)
+region = Rect2(0, 39, 120, 41)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m6e1d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcpmn"]
 atlas = ExtResource("4_dwlw0")
-region = Rect2(120, 0, 120, 80)
+region = Rect2(120, 39, 120, 41)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r38ds"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7wpy"]
 atlas = ExtResource("4_dwlw0")
-region = Rect2(240, 0, 120, 80)
+region = Rect2(240, 39, 120, 41)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_20002"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_82dwj"]
 atlas = ExtResource("5_c8x8m")
-region = Rect2(0, 0, 120, 80)
+region = Rect2(0, 39, 120, 41)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tg5lf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn6dx"]
 atlas = ExtResource("5_c8x8m")
-region = Rect2(120, 0, 120, 80)
+region = Rect2(120, 39, 120, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x73ng"]
 atlas = ExtResource("2_lpoq2")
@@ -238,13 +238,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_okgw2")
+"texture": SubResource("AtlasTexture_dpohp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m6e1d")
+"texture": SubResource("AtlasTexture_bcpmn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r38ds")
+"texture": SubResource("AtlasTexture_v7wpy")
 }],
 "loop": true,
 "name": &"Jump",
@@ -252,10 +252,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_20002")
+"texture": SubResource("AtlasTexture_82dwj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tg5lf")
+"texture": SubResource("AtlasTexture_bn6dx")
 }],
 "loop": true,
 "name": &"Jump in between",
@@ -400,7 +400,7 @@ position = Vector2(-18, 45)
 scale = Vector2(0.66, 0.66)
 sprite_frames = SubResource("SpriteFrames_up5i5")
 animation = &"Jump"
-frame_progress = 0.962792
+frame_progress = 0.715647
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-19.875, 46.5)
