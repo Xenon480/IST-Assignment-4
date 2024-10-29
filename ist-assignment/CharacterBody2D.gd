@@ -33,7 +33,7 @@ func _on_timer_timeout():
 		var dupe = scene.instantiate()
 		add_child(dupe)
 		dupe.global_position = global_position
-		dupe.set_meta("Direction",Shapecast.get_collider(0).global_position - global_position)
+		dupe.set_meta("Direction",(Shapecast.get_collider(0).global_position - global_position).normalized())
 		
 	
 		

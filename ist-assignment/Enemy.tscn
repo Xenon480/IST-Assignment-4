@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cibpsnn7ctoph" path="res://Projectile.tscn" id="3_mc57a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sphxe"]
+size = Vector2(27, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rghvu"]
 atlas = ExtResource("2_q8mi2")
@@ -97,6 +98,7 @@ script = ExtResource("1_6o3xa")
 Shapecast = NodePath("ShapeCast2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, 4)
 shape = SubResource("RectangleShape2D_sphxe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
