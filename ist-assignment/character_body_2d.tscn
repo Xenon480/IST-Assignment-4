@@ -263,8 +263,8 @@ metadata/Health = 100
 position = Vector2(-17, 45)
 scale = Vector2(0.66, 0.66)
 sprite_frames = SubResource("SpriteFrames_up5i5")
-animation = &"Idle"
-frame_progress = 0.593751
+animation = &"new_animation"
+frame_progress = 0.163398
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-21, 45.5)
