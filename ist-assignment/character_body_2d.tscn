@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://benrwa8mmy06w"]
+[gd_scene load_steps=59 format=3 uid="uid://benrwa8mmy06w"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_ihqp5"]
 [ext_resource type="Texture2D" uid="uid://sfpskei2m7xr" path="res://Sprite Sheets/Run.png" id="2_lpoq2"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ctj0w256get3c" path="res://Sprite Sheets/Idle.png" id="2_wfsdl"]
 [ext_resource type="Texture2D" uid="uid://b6vliqln6fam1" path="res://Sprite Sheets/Fall.png" id="3_ltmo8"]
 [ext_resource type="Texture2D" uid="uid://ca2igfyudtjm7" path="res://Sprite Sheets/Slide.png" id="4_bwei0"]
+[ext_resource type="Texture2D" uid="uid://y51tc145ec2j" path="res://Knight Anims/Jump.png" id="4_dwlw0"]
+[ext_resource type="Texture2D" uid="uid://cg258fwkx103" path="res://Knight Anims/JumpFallInbetween.png" id="5_c8x8m"]
 [ext_resource type="Texture2D" uid="uid://cu3xppncnnwya" path="res://Sprite Sheets/Slide End].png" id="6_troxi"]
 [ext_resource type="Texture2D" uid="uid://l81o0c5lbjn7" path="res://Sprite Sheets/Slide Start.png" id="7_i6tpf"]
 [ext_resource type="Texture2D" uid="uid://ngqjvyrchuug" path="res://Sprite Sheets/Swing 1.png" id="8_v60w5"]
@@ -70,6 +72,26 @@ region = Rect2(960, 39, 120, 41)
 [sub_resource type="AtlasTexture" id="AtlasTexture_t8snp"]
 atlas = ExtResource("2_wfsdl")
 region = Rect2(1080, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okgw2"]
+atlas = ExtResource("4_dwlw0")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6e1d"]
+atlas = ExtResource("4_dwlw0")
+region = Rect2(120, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r38ds"]
+atlas = ExtResource("4_dwlw0")
+region = Rect2(240, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20002"]
+atlas = ExtResource("5_c8x8m")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg5lf"]
+atlas = ExtResource("5_c8x8m")
+region = Rect2(120, 0, 120, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x73ng"]
 atlas = ExtResource("2_lpoq2")
@@ -243,6 +265,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_okgw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6e1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r38ds")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20002")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg5lf")
+}],
+"loop": true,
+"name": &"Jump in between",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_x73ng")
 }, {
 "duration": 1.0,
@@ -381,6 +428,8 @@ scale = Vector2(0.66, 0.66)
 sprite_frames = SubResource("SpriteFrames_up5i5")
 animation = &"Fall"
 frame_progress = 0.337306
+animation = &"Jump"
+frame_progress = 0.962792
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-19.875, 46.5)
