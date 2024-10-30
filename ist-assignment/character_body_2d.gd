@@ -33,7 +33,7 @@ var swinging = false
 var dashinganimation = false
 var slidinganimation = false
 var ParryCanBeEnabled = true
-
+var SuccessfulParry = false
 var body2 = CharacterBody2D.new()
 func wait(seconds: float) -> void:
 
@@ -237,7 +237,10 @@ func _on_jumping_timer_timeout() -> void:
 func _on_parry_timer_timeout() -> void:
 	set_meta("Parry",false)
 	Shield.visible = false 
-	ParryTimer2.start(3)
+	if SuccessfulParry == false:
+		ParryTimer2.start(3)
+	else:
+		ParryTimer.start(1)
 
 
 func _on_parry_timer_2_timeout() -> void:

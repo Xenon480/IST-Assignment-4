@@ -4375,6 +4375,7 @@ texture = ExtResource("6_234hs")
 sources/0 = SubResource("TileSetAtlasSource_bfisf")
 
 [node name="Node2D" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-153.0]
 
 [node name="TileMap" parent="." instance=ExtResource("2_86dq5")]
 position = Vector2(310, 91)

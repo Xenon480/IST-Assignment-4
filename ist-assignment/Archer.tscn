@@ -153,7 +153,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_o6x4d")
 }],
-"loop": true,
+"loop": false,
 "name": &"Archer-Hurt",
 "speed": 7.0
 }, {
@@ -222,20 +222,20 @@ size = Vector2(300, 250)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sphxe"]
 size = Vector2(35, 44)
 
-[node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "DeathTimer", "StunTimer", "AnimatedSprite")]
+[node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "DeathTimer", "StunTimer", "ArrowTimer", "AnimatedSprite")]
 position = Vector2(1, -22)
 script = ExtResource("1_5s3j4")
 Shapecast = NodePath("ShapeCast2D")
 DeathTimer = NodePath("DeathTimer")
 StunTimer = NodePath("StunTimer")
+ArrowTimer = NodePath("Timer")
 AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/Health = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(6, -8)
 sprite_frames = SubResource("SpriteFrames_ficfu")
-animation = &"Archer-Idle"
-frame_progress = 0.447429
+animation = &"Archer-Hurt"
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 position = Vector2(134, -4)
@@ -244,7 +244,7 @@ target_position = Vector2(368, 0)
 collision_mask = 2
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
+one_shot = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_4nq8k")]
 position = Vector2(1444, 0)
