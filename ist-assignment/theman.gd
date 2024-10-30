@@ -76,7 +76,7 @@ func _on_timer_timeout():
 		DelayTimer.start(0.8)
 		AnimatedSprite.play("Sword-enemy-Slash")
 		
-		print(Shapecast.get_collider(0).get_meta("Health"))
+		
 		print("Take Damage")
 
 
@@ -92,6 +92,7 @@ func _on_slashing_timer_timeout() -> void:
 
 func _on_damage_delay_timeout() -> void:
 	if Shapecast.get_collider(0) and Entered == true:
+		print(Shapecast.get_collider(0).get_meta("Health"))
 		Shapecast.get_collider(0).set_meta("Health",Shapecast.get_collider(0).get_meta("Health")-20)
 
 

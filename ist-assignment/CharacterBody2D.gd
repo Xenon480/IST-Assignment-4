@@ -25,7 +25,7 @@ func _physics_process(delta):
 		
 	
 
-	print(get_meta("Health"))
+	
 	if get_meta("Health") <= 0:
 		AnimatedSprite.play("Archer-Death")
 		if onlyonce == false:
