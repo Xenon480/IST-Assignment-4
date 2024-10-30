@@ -15,6 +15,7 @@ var direction = Vector2.ZERO
 @export var ProgressBar1: ProgressBar
 @export var Raycast2D1: RayCast2D
 @export var JumpFloatTimer: Timer
+@export var Shield: Sprite2D
 var jump = false
 var floating = false
 @export var  AnimatedSprite: AnimatedSprite2D
@@ -61,7 +62,7 @@ func _ready():
 func _physics_process(delta):
 	if is_on_floor():
 		floating = false
-	if floating == true:
+	if floating == true and  Raycast2D1.get_collider() is not TileMap:
 		velocity.y = 0
 	
 	if floating == true and Input.is_action_pressed("jump") == false: 
@@ -75,6 +76,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Parry") and get_meta("Parry") == false and ParryCanBeEnabled == true :
 		ParryCanBeEnabled = false
 		set_meta("Parry",true)
+		Shield.visible = true
 		
 		ParryTimer.start(1)
 	if get_meta("Parry") == true:
@@ -234,6 +236,7 @@ func _on_jumping_timer_timeout() -> void:
 
 func _on_parry_timer_timeout() -> void:
 	set_meta("Parry",false)
+	Shield.visible = false 
 	ParryTimer2.start(3)
 
 

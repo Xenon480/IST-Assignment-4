@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://benrwa8mmy06w"]
+[gd_scene load_steps=65 format=3 uid="uid://benrwa8mmy06w"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_ihqp5"]
 [ext_resource type="Texture2D" uid="uid://sfpskei2m7xr" path="res://Sprite Sheets/Run.png" id="2_lpoq2"]
@@ -12,7 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://l81o0c5lbjn7" path="res://Sprite Sheets/Slide Start.png" id="7_i6tpf"]
 [ext_resource type="Texture2D" uid="uid://ngqjvyrchuug" path="res://Sprite Sheets/Swing 1.png" id="8_v60w5"]
 [ext_resource type="Texture2D" uid="uid://cdexyla2ymosf" path="res://Sprite Sheets/Swing 2.png" id="9_0ae06"]
-[ext_resource type="PackedScene" path="res://Healthbar.tscn" id="13_2oc5k"]
+[ext_resource type="PackedScene" uid="uid://bokfi12u2x24x" path="res://Healthbar.tscn" id="13_2oc5k"]
+[ext_resource type="Texture2D" uid="uid://bie5d2vaeehpk" path="res://pngwing.com.png" id="14_rydl3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aetyq"]
 atlas = ExtResource("2_pocnw")
@@ -407,7 +408,7 @@ size = Vector2(22.25, 25)
 [sub_resource type="CircleShape2D" id="CircleShape2D_26s36"]
 radius = 35.6931
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "JumpingTimer", "ParryTimer", "ParryTimer2", "ProgressBar1", "Raycast2D1", "JumpFloatTimer", "AnimatedSprite")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "JumpingTimer", "ParryTimer", "ParryTimer2", "ProgressBar1", "Raycast2D1", "JumpFloatTimer", "Shield", "AnimatedSprite")]
 position = Vector2(-1, 0)
 collision_layer = 3
 script = ExtResource("1_ihqp5")
@@ -425,6 +426,7 @@ ParryTimer2 = NodePath("ParryTimer2")
 ProgressBar1 = NodePath("ColorRect")
 Raycast2D1 = NodePath("RayCast2D")
 JumpFloatTimer = NodePath("JumpFloat")
+Shield = NodePath("Pngwing_com")
 AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/Health = 100
 metadata/Parry = false
@@ -433,8 +435,8 @@ metadata/Parry = false
 position = Vector2(-18, 45)
 scale = Vector2(0.66, 0.66)
 sprite_frames = SubResource("SpriteFrames_up5i5")
-animation = &"Fall"
-frame_progress = 0.995786
+animation = &"Swing 2"
+frame_progress = 0.66039
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-19.875, 46.5)
@@ -495,6 +497,12 @@ offset_right = -124.0
 offset_bottom = -134.0
 
 [node name="JumpFloat" type="Timer" parent="."]
+
+[node name="Pngwing_com" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-15, 46)
+scale = Vector2(0.00577331, 0.00577331)
+texture = ExtResource("14_rydl3")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
