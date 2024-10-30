@@ -425,7 +425,7 @@ size = Vector2(300, 150)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f63c3"]
 size = Vector2(145, 99)
 
-[node name="Theman" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "AnimatedSprite", "StunTimer", "SlashingTimer", "DelayTimer", "DeathTimer")]
+[node name="Theman" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "AnimatedSprite", "StunTimer", "SlashingTimer", "DelayTimer", "DeathTimer", "Timer1")]
 script = ExtResource("1_agoay")
 Shapecast = NodePath("ShapeCast2D")
 AnimatedSprite = NodePath("AnimatedSprite2D")
@@ -433,21 +433,23 @@ StunTimer = NodePath("StunTimer")
 SlashingTimer = NodePath("SlashingTimer")
 DelayTimer = NodePath("DamageDelay")
 DeathTimer = NodePath("DeathTimer")
+Timer1 = NodePath("Timer")
 metadata/Health = 100
+metadata/GettingHit = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -21)
 scale = Vector2(1.56061, 1.56061)
 sprite_frames = SubResource("SpriteFrames_8wwo4")
 animation = &"Sword-enemy-Death"
-frame_progress = 0.356822
+frame_progress = 0.208472
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_oieio")
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
+one_shot = true
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
 visible = false
