@@ -62,10 +62,14 @@ func _physics_process(delta):
 		if SwingCounter % 2 != 0:
 			print("lalala")
 			AnimatedSprite.play("Swing 1")
+			body2.set_meta("GettingHit",true)
+			print("True")
 			swinging = true
 			timer4.start(0.4)
 		else:
 			AnimatedSprite.play("Swing 2")
+			body2.set_meta("GettingHit",true)
+			print("True")
 			swinging = true
 			timer4.start(0.5)
 		if Entered == true and body2 is CharacterBody2D:

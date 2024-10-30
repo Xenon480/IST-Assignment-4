@@ -15,7 +15,7 @@ var temphealth = 100
 var scene = load("res://Projectile.tscn")
 var gettinghit = false
 func _physics_process(delta):
-	
+	print(AnimatedSprite.animation)
 	if temphealth != get_meta("Health"):
 		temphealth = get_meta("Health")
 		AnimatedSprite.play("Archer-Hurt")
@@ -47,6 +47,7 @@ func _physics_process(delta):
 
 
 func _on_timer_timeout():
+	
 	if Shapecast.get_collider(0) and get_meta("Health") > 0  and gettinghit == false:
 		AnimatedSprite.play("Archer-Shoot")
 		var dupe = scene.instantiate()
