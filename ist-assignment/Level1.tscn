@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://daxm737snsble"]
+[gd_scene load_steps=9 format=4 uid="uid://daxm737snsble"]
 
 [ext_resource type="PackedScene" uid="uid://drjj30mex81by" path="res://Tilemap.tscn" id="2_86dq5"]
 [ext_resource type="PackedScene" uid="uid://b6ky51hpnw00j" path="res://Swordman.tscn" id="4_wycpy"]
 [ext_resource type="PackedScene" uid="uid://benrwa8mmy06w" path="res://character_body_2d.tscn" id="5_1mo3v"]
 [ext_resource type="PackedScene" uid="uid://bv4yquhcrcg6u" path="res://Archer.tscn" id="5_584uq"]
 [ext_resource type="Texture2D" uid="uid://ocex67fgw5vk" path="res://Mossy Tileset/Mossy - TileSet Smaller.png" id="5_q63ig"]
+[ext_resource type="Texture2D" uid="uid://ba7cmf3kintva" path="res://Mossy Tileset/Background.jpg" id="5_v60dm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5gtfj"]
 texture = ExtResource("5_q63ig")
@@ -11527,7 +11528,14 @@ metadata/GettingHit = false
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(535, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("5_v60dm")
+
 [node name="mossy more like moss desmosmosmos" type="TileMapLayer" parent="."]
+position = Vector2(3, 0)
 scale = Vector2(0.5, 0.5)
 tile_map_data = PackedByteArray("AABhABMAAAACAAAAAABoABMAAAACAAAAAABvABMAAAACAAAAAAB2ABMAAAACAAAAAAB9ABMAAAACAAAAAACEABMAAAACAAAAAACLABMAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_oklsq")
