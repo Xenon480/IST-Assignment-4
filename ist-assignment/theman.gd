@@ -15,14 +15,16 @@ var gettinghit = false
 var onlyonce2 = false
 var slashing = false 
 var onlyonce = false
+var onlyonce3 = false
 func _physics_process(delta):
 	
-	if temphealth != get_meta("Health"):
+	if temphealth != get_meta("Health")   and get_meta("Health") >= 0:
 		temphealth = get_meta("Health")
 		AnimatedSprite.play("Sword-enemy-Hurt")
 		gettinghit = true
+		onlyonce2 = true
 	elif onlyonce2 == false:
-		StunTimer.start(0.3)
+		StunTimer.start(0.5)
 	
 	
 	
@@ -30,18 +32,20 @@ func _physics_process(delta):
 	velocity.x = direction.x * 300
 	velocity.y = 500
 	
-	if velocity.x <= 0:
+	if velocity.x <= 0 and get_meta("Health") >= 0:
 		AnimatedSprite.flip_h = true
 	else:
 		AnimatedSprite.flip_h = false
-	if velocity.x >= -5 and velocity.x <= 0 :
+	if velocity.x >= -5 and velocity.x <= 0   and get_meta("Health") >= 0 :
 	
 		AnimatedSprite.play("Sword-enemy-Idle")
-	elif gettinghit == false and slashing == false:
+	elif gettinghit == false and slashing == false and get_meta("Health") >= 0:
 		
 		AnimatedSprite.play("Sword-enemy-Run")
 		
 	if get_meta("Health") <= 0:
+		
+		
 		AnimatedSprite.play("Sword-enemy-Death")
 		if onlyonce == false:
 			onlyonce = true
@@ -69,14 +73,14 @@ func _on_area_2d_body_exited(body):
 
 func _on_timer_timeout():
 	
-	if Entered == true and gettinghit == false and slashing == false:
+	if Entered == true and gettinghit == false and slashing == false  and get_meta("Health") >= 0 :
 		print("AahHAHa")
 		slashing = true
 		SlashingTimer.start(1)
 		DelayTimer.start(0.8)
 		AnimatedSprite.play("Sword-enemy-Slash")
 		
-		print(Shapecast.get_collider(0).get_meta("Health"))
+		
 		print("Take Damage")
 
 
@@ -92,6 +96,7 @@ func _on_slashing_timer_timeout() -> void:
 
 func _on_damage_delay_timeout() -> void:
 	if Shapecast.get_collider(0) and Entered == true:
+		print(Shapecast.get_collider(0).get_meta("Health"))
 		Shapecast.get_collider(0).set_meta("Health",Shapecast.get_collider(0).get_meta("Health")-20)
 
 

@@ -53,7 +53,7 @@ func _ready():
 	timer3.timeout.connect(_on_timer_timeout3)
 	
 func _physics_process(delta):
-	if is_on_floor() == false and jump == false:
+	if is_on_floor() == false and jump == false and dashinganimation == false:
 		AnimatedSprite.play("Fall")
 	TextEdit1.set_line(0,str(get_meta("Health")))
 	if Input.is_action_just_pressed("LeftClick") and swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
