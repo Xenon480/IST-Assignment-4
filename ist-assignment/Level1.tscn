@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://drjj30mex81by" path="res://Tilemap.tscn" id="2_86dq5"]
 [ext_resource type="PackedScene" uid="uid://b6ky51hpnw00j" path="res://Swordman.tscn" id="4_wycpy"]
 [ext_resource type="PackedScene" uid="uid://benrwa8mmy06w" path="res://character_body_2d.tscn" id="5_1mo3v"]
-[ext_resource type="Texture2D" uid="uid://dumsdp3vncjix" path="res://Mossy Tileset/Mossy - TileSet.png" id="5_5tnk3"]
+[ext_resource type="Texture2D" uid="uid://dpx8fxq5smsy3" path="res://Mossy Tileset/Mossy - TileSet.png" id="5_5tnk3"]
 [ext_resource type="PackedScene" uid="uid://bv4yquhcrcg6u" path="res://Archer.tscn" id="5_584uq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kxsi0"]
