@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://benrwa8mmy06w"]
+[gd_scene load_steps=64 format=3 uid="uid://benrwa8mmy06w"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_ihqp5"]
 [ext_resource type="Texture2D" uid="uid://sfpskei2m7xr" path="res://Sprite Sheets/Run.png" id="2_lpoq2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://l81o0c5lbjn7" path="res://Sprite Sheets/Slide Start.png" id="7_i6tpf"]
 [ext_resource type="Texture2D" uid="uid://ngqjvyrchuug" path="res://Sprite Sheets/Swing 1.png" id="8_v60w5"]
 [ext_resource type="Texture2D" uid="uid://cdexyla2ymosf" path="res://Sprite Sheets/Swing 2.png" id="9_0ae06"]
+[ext_resource type="PackedScene" uid="uid://bokfi12u2x24x" path="res://Healthbar.tscn" id="13_2oc5k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aetyq"]
 atlas = ExtResource("2_pocnw")
@@ -406,7 +407,7 @@ size = Vector2(22.25, 25)
 [sub_resource type="CircleShape2D" id="CircleShape2D_26s36"]
 radius = 35.6931
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "JumpingTimer", "ParryTimer", "ParryTimer2", "TextEdit1", "Raycast2D1", "AnimatedSprite")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "JumpingTimer", "ParryTimer", "ParryTimer2", "ProgressBar1", "Raycast2D1", "JumpFloatTimer", "AnimatedSprite")]
 position = Vector2(-1, 0)
 collision_layer = 3
 script = ExtResource("1_ihqp5")
@@ -421,8 +422,9 @@ SlidingAnimationEnd = NodePath("SlidingAnimationEnd")
 JumpingTimer = NodePath("JumpingTimer")
 ParryTimer = NodePath("ParryTimer")
 ParryTimer2 = NodePath("ParryTimer2")
-TextEdit1 = NodePath("TextEdit")
+ProgressBar1 = NodePath("ColorRect")
 Raycast2D1 = NodePath("RayCast2D")
+JumpFloatTimer = NodePath("JumpFloat")
 AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/Health = 100
 metadata/Parry = false
@@ -449,13 +451,6 @@ one_shot = true
 
 [node name="Timer3" type="Timer" parent="."]
 one_shot = true
-
-[node name="TextEdit" type="TextEdit" parent="."]
-offset_left = -221.0
-offset_top = -145.0
-offset_right = -130.0
-offset_bottom = -89.0
-placeholder_text = "Health"
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -493,7 +488,14 @@ one_shot = true
 position = Vector2(-21, 45)
 target_position = Vector2(40, 0)
 
-[connection signal="text_set" from="TextEdit" to="." method="_on_text_edit_text_set"]
+[node name="ColorRect" parent="." instance=ExtResource("13_2oc5k")]
+offset_left = -274.0
+offset_top = -157.0
+offset_right = -124.0
+offset_bottom = -134.0
+
+[node name="JumpFloat" type="Timer" parent="."]
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Timer4" to="." method="_on_timer_4_timeout"]
@@ -504,3 +506,4 @@ target_position = Vector2(40, 0)
 [connection signal="timeout" from="JumpingTimer" to="." method="_on_jumping_timer_timeout"]
 [connection signal="timeout" from="ParryTimer" to="." method="_on_parry_timer_timeout"]
 [connection signal="timeout" from="ParryTimer2" to="." method="_on_parry_timer_2_timeout"]
+[connection signal="timeout" from="JumpFloat" to="." method="_on_jump_float_timeout"]

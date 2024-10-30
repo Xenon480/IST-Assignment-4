@@ -12,9 +12,11 @@ var direction = Vector2.ZERO
 @export var JumpingTimer: Timer
 @export var ParryTimer: Timer
 @export var ParryTimer2: Timer
-@export var TextEdit1: TextEdit
+@export var ProgressBar1: ProgressBar
 @export var Raycast2D1: RayCast2D
+@export var JumpFloatTimer: Timer
 var jump = false
+var floating = false
 @export var  AnimatedSprite: AnimatedSprite2D
 var maxdashes = 1
 var currentdashes = 0
@@ -30,6 +32,7 @@ var swinging = false
 var dashinganimation = false
 var slidinganimation = false
 var ParryCanBeEnabled = true
+
 var body2 = CharacterBody2D.new()
 func wait(seconds: float) -> void:
 
@@ -56,24 +59,32 @@ func _ready():
 	timer3.timeout.connect(_on_timer_timeout3)
 	
 func _physics_process(delta):
+	if is_on_floor():
+		floating = false
+	if floating == true:
+		velocity.y = 0
 	
+	if floating == true and Input.is_action_pressed("jump") == false: 
+		floating = false
+	ProgressBar1.value = get_meta("Health")
 	
 	if Raycast2D1.get_collider() is TileMap and Input.is_action_just_pressed("jump"):
 		print("Tile")
 		velocity.y  -= 1500
+		
 	if Input.is_action_just_pressed("Parry") and get_meta("Parry") == false and ParryCanBeEnabled == true :
 		ParryCanBeEnabled = false
 		set_meta("Parry",true)
 		
 		ParryTimer.start(1)
 	if get_meta("Parry") == true:
-		velocity = Vector2.ZERO
+		velocity.x = 0
 		
 	
 	print( get_meta("Parry"))
 	if is_on_floor() == false and jump == false and dashinganimation == false:
 		AnimatedSprite.play("Fall")
-	TextEdit1.set_line(0,str(get_meta("Health")))
+	
 	if Input.is_action_just_pressed("LeftClick") and swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
 		
 		SwingCounter += 1
@@ -93,7 +104,7 @@ func _physics_process(delta):
 		if Entered == true and body2 is CharacterBody2D:
 			body2.set_meta("Health",body2.get_meta("Health")-20) 
 			print(body2.get_meta("Health"))
-	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false and get_meta("Parry") == false:
+	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false and get_meta("Parry") == false and is_on_floor() == true:
 		sliding = true
 		slidinganimation = true
 		SlidingAnimationStart.start(0.001)
@@ -151,9 +162,11 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor() and get_meta("Parry") == false :
 		velocity.y = -800
+		JumpFloatTimer.start(0.3)
 		jump = true
 		AnimatedSprite.play("Jump")
 		JumpingTimer.start(0.2)
+		
 	else:
 		velocity.y += 50
 	
@@ -226,3 +239,9 @@ func _on_parry_timer_timeout() -> void:
 
 func _on_parry_timer_2_timeout() -> void:
 	ParryCanBeEnabled = true
+
+
+
+func _on_jump_float_timeout() -> void:
+	if Input.is_action_pressed("jump") and is_on_floor() == false:
+		floating = true 
