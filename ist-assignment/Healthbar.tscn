@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bokfi12u2x24x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gaaor"]
+bg_color = Color(0.4, 0.572549, 0.239216, 1)
+
+[node name="ProgressBar" type="ProgressBar"]
+offset_right = 243.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_gaaor")
+value = 100.0
