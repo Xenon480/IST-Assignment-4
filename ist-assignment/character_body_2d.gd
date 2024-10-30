@@ -60,6 +60,8 @@ func _ready():
 	timer3.timeout.connect(_on_timer_timeout3)
 	
 func _physics_process(delta):
+	SuccessfulParry = get_meta("ParrySucessful")
+	print(SuccessfulParry)
 	if is_on_floor():
 		floating = false
 	if floating == true and  Raycast2D1.get_collider() is not TileMap:
@@ -75,6 +77,7 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("Parry") and get_meta("Parry") == false and ParryCanBeEnabled == true :
 		ParryCanBeEnabled = false
+		set_meta("ParrySucessful",false)
 		set_meta("Parry",true)
 		Shield.visible = true
 		
@@ -83,7 +86,7 @@ func _physics_process(delta):
 		velocity.x = 0
 		
 	
-	print( get_meta("Parry"))
+	
 	if is_on_floor() == false and jump == false and dashinganimation == false:
 		AnimatedSprite.play("Fall")
 	
@@ -139,7 +142,7 @@ func _physics_process(delta):
 		
 		timer.start(2)
 		onlyonce = true
-		print(timer.time_left)
+		
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
 		Raycast2D1.target_position.x = 40
@@ -240,7 +243,8 @@ func _on_parry_timer_timeout() -> void:
 	if SuccessfulParry == false:
 		ParryTimer2.start(3)
 	else:
-		ParryTimer.start(1)
+		print("aajajaaa")
+		ParryTimer2.start(1)
 
 
 func _on_parry_timer_2_timeout() -> void:

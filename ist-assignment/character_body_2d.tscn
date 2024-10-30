@@ -430,6 +430,7 @@ Shield = NodePath("Pngwing_com")
 AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/Health = 100
 metadata/Parry = false
+metadata/ParrySucessful = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-18, 45)

@@ -17,8 +17,7 @@ var temphealth = 100
 var scene = load("res://Projectile.tscn")
 var gettinghit = false
 func _physics_process(delta):
-	print(AnimatedSprite.animation)
-	print(gettinghit)
+	
 	if temphealth != get_meta("Health"):
 		temphealth = get_meta("Health")
 		AnimatedSprite.play("Archer-Hurt")
