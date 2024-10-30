@@ -406,7 +406,7 @@ size = Vector2(22.25, 25)
 [sub_resource type="CircleShape2D" id="CircleShape2D_26s36"]
 radius = 35.6931
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "JumpingTimer", "TextEdit1", "AnimatedSprite")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "JumpingTimer", "ParryTimer", "ParryTimer2", "TextEdit1", "AnimatedSprite")]
 position = Vector2(-1, 0)
 collision_layer = 3
 script = ExtResource("1_ihqp5")
@@ -419,9 +419,12 @@ SlidingAnimationStart = NodePath("SlidingAnimationStart")
 SlidingAnimationMiddle = NodePath("SlidingAnimationMiddle")
 SlidingAnimationEnd = NodePath("SlidingAnimationEnd")
 JumpingTimer = NodePath("JumpingTimer")
+ParryTimer = NodePath("ParryTimer")
+ParryTimer2 = NodePath("ParryTimer2")
 TextEdit1 = NodePath("TextEdit")
 AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/Health = 100
+metadata/Parry = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-18, 45)
@@ -478,6 +481,12 @@ one_shot = true
 [node name="JumpingTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="ParryTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ParryTimer2" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="text_set" from="TextEdit" to="." method="_on_text_edit_text_set"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
@@ -487,3 +496,5 @@ one_shot = true
 [connection signal="timeout" from="SlidingAnimationMiddle" to="." method="_on_sliding_animation_middle_timeout"]
 [connection signal="timeout" from="SlidingAnimationEnd" to="." method="_on_sliding_animation_end_timeout"]
 [connection signal="timeout" from="JumpingTimer" to="." method="_on_jumping_timer_timeout"]
+[connection signal="timeout" from="ParryTimer" to="." method="_on_parry_timer_timeout"]
+[connection signal="timeout" from="ParryTimer2" to="." method="_on_parry_timer_2_timeout"]

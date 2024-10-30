@@ -10,6 +10,8 @@ var direction = Vector2.ZERO
 @export var SlidingAnimationMiddle : Timer
 @export var SlidingAnimationEnd : Timer
 @export var JumpingTimer: Timer
+@export var ParryTimer: Timer
+@export var ParryTimer2: Timer
 @export var TextEdit1: TextEdit
 var jump = false
 @export var  AnimatedSprite: AnimatedSprite2D
@@ -26,7 +28,7 @@ var Entered = false
 var swinging = false
 var dashinganimation = false
 var slidinganimation = false
-
+var ParryCanBeEnabled = true
 var body2 = CharacterBody2D.new()
 func wait(seconds: float) -> void:
 
@@ -53,6 +55,17 @@ func _ready():
 	timer3.timeout.connect(_on_timer_timeout3)
 	
 func _physics_process(delta):
+	
+	if Input.is_action_just_pressed("Parry") and get_meta("Parry") == false and ParryCanBeEnabled == true :
+		ParryCanBeEnabled = false
+		set_meta("Parry",true)
+		
+		ParryTimer.start(1)
+	if get_meta("Parry") == true:
+		velocity = Vector2.ZERO
+		
+	
+	print( get_meta("Parry"))
 	if is_on_floor() == false and jump == false and dashinganimation == false:
 		AnimatedSprite.play("Fall")
 	TextEdit1.set_line(0,str(get_meta("Health")))
@@ -75,7 +88,7 @@ func _physics_process(delta):
 		if Entered == true and body2 is CharacterBody2D:
 			body2.set_meta("Health",body2.get_meta("Health")-20) 
 			print(body2.get_meta("Health"))
-	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false:
+	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false and get_meta("Parry") == false:
 		sliding = true
 		slidinganimation = true
 		SlidingAnimationStart.start(0.001)
@@ -93,7 +106,7 @@ func _physics_process(delta):
 	if currentslides >= maxslides and onlyonce == false:
 		onlyonce = true 
 		timer3.start(5)
-	if Input.is_action_just_pressed("Dash") and currentdashes < maxdashes and sliding == false :
+	if Input.is_action_just_pressed("Dash") and currentdashes < maxdashes and sliding == false and get_meta("Parry") == false:
 		dashing = true 
 		AnimatedSprite.play("Dash")
 		dashinganimation = true
@@ -111,7 +124,7 @@ func _physics_process(delta):
 		print(timer.time_left)
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
-		if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
+		if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true :
 			AnimatedSprite.play("Run")
 		AnimatedSprite.flip_h = false
 		#velocity.x = direction.x * 500
@@ -129,7 +142,7 @@ func _physics_process(delta):
 			AnimatedSprite.play("Idle")
 	
 	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and get_meta("Parry") == false :
 		velocity.y = -800
 		jump = true
 		AnimatedSprite.play("Jump")
@@ -197,3 +210,12 @@ func _on_jumping_timer_timeout() -> void:
 	jump = false
 	
 	
+
+
+func _on_parry_timer_timeout() -> void:
+	set_meta("Parry",false)
+	ParryTimer2.start(3)
+
+
+func _on_parry_timer_2_timeout() -> void:
+	ParryCanBeEnabled = true

@@ -69,7 +69,7 @@ func _process(delta):
 	
 		AnimatedSprite.play("Sword-enemy-Idle")
 	if gettinghit == false and slashing == false and get_meta("Health") > 0 :
-		print("run")
+	
 		AnimatedSprite.play("Sword-enemy-Run")
 		
 	
@@ -112,7 +112,8 @@ func _on_slashing_timer_timeout() -> void:
 func _on_damage_delay_timeout() -> void:
 	if Shapecast.get_collider(0) and Entered == true and gettinghit == false:
 		print(Shapecast.get_collider(0).get_meta("Health"))
-		Shapecast.get_collider(0).set_meta("Health",Shapecast.get_collider(0).get_meta("Health")-20)
+		if Shapecast.get_collider(0).get_meta("Parry") == false:
+			Shapecast.get_collider(0).set_meta("Health",Shapecast.get_collider(0).get_meta("Health")-20)
 
 
 func _on_death_timer_timeout() -> void:

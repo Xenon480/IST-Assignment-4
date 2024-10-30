@@ -10,6 +10,7 @@ size = Vector2(24, 8)
 position = Vector2(265, 111)
 script = ExtResource("1_0o28f")
 metadata/Direction = Vector2(0, 0)
+metadata/Position = Vector2(0, 0)
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(-8, -4)

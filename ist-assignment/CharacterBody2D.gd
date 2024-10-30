@@ -54,7 +54,7 @@ func _on_timer_timeout():
 		add_child(dupe)
 		dupe.global_position = global_position
 		dupe.set_meta("Direction",(Shapecast.get_collider(0).get_node("CollisionShape2D").global_position - get_node("CollisionShape2D").global_position).normalized())
-		
+		dupe.set_meta("Position",Shapecast.get_collider(0).get_node("CollisionShape2D").global_position)
 	
 		
 
