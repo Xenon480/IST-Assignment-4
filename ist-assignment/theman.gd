@@ -114,6 +114,8 @@ func _on_damage_delay_timeout() -> void:
 		print(Shapecast.get_collider(0).get_meta("Health"))
 		if Shapecast.get_collider(0).get_meta("Parry") == false:
 			Shapecast.get_collider(0).set_meta("Health",Shapecast.get_collider(0).get_meta("Health")-20)
+		else:
+			Shapecast.get_collider(0).set_meta("ParrySucessful",true)
 
 
 func _on_death_timer_timeout() -> void:
