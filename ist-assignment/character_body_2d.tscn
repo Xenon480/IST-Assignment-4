@@ -406,7 +406,7 @@ size = Vector2(22.25, 25)
 [sub_resource type="CircleShape2D" id="CircleShape2D_26s36"]
 radius = 35.6931
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "JumpingTimer", "ParryTimer", "ParryTimer2", "TextEdit1", "AnimatedSprite")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "JumpingTimer", "ParryTimer", "ParryTimer2", "TextEdit1", "Raycast2D1", "AnimatedSprite")]
 position = Vector2(-1, 0)
 collision_layer = 3
 script = ExtResource("1_ihqp5")
@@ -422,6 +422,7 @@ JumpingTimer = NodePath("JumpingTimer")
 ParryTimer = NodePath("ParryTimer")
 ParryTimer2 = NodePath("ParryTimer2")
 TextEdit1 = NodePath("TextEdit")
+Raycast2D1 = NodePath("RayCast2D")
 AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/Health = 100
 metadata/Parry = false
@@ -457,6 +458,7 @@ offset_bottom = -89.0
 placeholder_text = "Health"
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-20, 46)
@@ -486,6 +488,10 @@ one_shot = true
 
 [node name="ParryTimer2" type="Timer" parent="."]
 one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-21, 45)
+target_position = Vector2(40, 0)
 
 [connection signal="text_set" from="TextEdit" to="." method="_on_text_edit_text_set"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -13,6 +13,7 @@ var direction = Vector2.ZERO
 @export var ParryTimer: Timer
 @export var ParryTimer2: Timer
 @export var TextEdit1: TextEdit
+@export var Raycast2D1: RayCast2D
 var jump = false
 @export var  AnimatedSprite: AnimatedSprite2D
 var maxdashes = 1
@@ -56,6 +57,10 @@ func _ready():
 	
 func _physics_process(delta):
 	
+	
+	if Raycast2D1.get_collider() is TileMap and Input.is_action_just_pressed("jump"):
+		print("Tile")
+		velocity.y  -= 1500
 	if Input.is_action_just_pressed("Parry") and get_meta("Parry") == false and ParryCanBeEnabled == true :
 		ParryCanBeEnabled = false
 		set_meta("Parry",true)
@@ -124,6 +129,7 @@ func _physics_process(delta):
 		print(timer.time_left)
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
+		Raycast2D1.target_position.x = 40
 		if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true :
 			AnimatedSprite.play("Run")
 		AnimatedSprite.flip_h = false
@@ -134,6 +140,7 @@ func _physics_process(delta):
 			AnimatedSprite.play("Run")
 		
 		AnimatedSprite.flip_h = true
+		Raycast2D1.target_position.x = -40
 		##velocity.x = direction.x * 500
 		
 	else:
