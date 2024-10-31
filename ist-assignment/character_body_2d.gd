@@ -36,7 +36,7 @@ var slidinganimation = false
 var ParryCanBeEnabled = true
 var SuccessfulParry = false
 var body2 = CharacterBody2D.new()
-
+var onlyonce2 = false
 func wait(seconds: float) -> void:
 
 	await get_tree().create_timer(seconds).timeout
@@ -61,141 +61,152 @@ func _ready():
 	timer2.timeout.connect(_on_timer_timeout2)
 	timer3.timeout.connect(_on_timer_timeout3)
 	
-func _physics_process(delta):
-	
-	SuccessfulParry = get_meta("ParrySucessful")
-	
-	print(SuccessfulParry)
-	if is_on_floor():
-		floating = false
-	if floating == true and  Raycast2D1.get_collider() is not TileMap:
-		velocity.y = 0
-	
-	if floating == true and Input.is_action_pressed("jump") == false: 
-		floating = false
+func _physics_process(delta: float) -> void:
 	ProgressBar1.value = get_meta("Health")
-	
-	if Raycast2D1.get_collider() is TileMap and Input.is_action_just_pressed("jump"):
-		print("Tile")
-		velocity.y  -= 1500
-		
-	if Input.is_action_just_pressed("Parry") and get_meta("Parry") == false and ParryCanBeEnabled == true :
-		ParryCanBeEnabled = false
-		set_meta("ParrySucessful",false)
-		set_meta("Parry",true)
-		Shield.visible = true
-		
-		ParryTimer.start(1)
-	if get_meta("Parry") == true:
-		velocity.x = 0
-		
-	
-	
-	if is_on_floor() == false and jump == false and dashinganimation == false:
-		AnimatedSprite.play("Fall")
-	
-	if Input.is_action_just_pressed("LeftClick") and swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
-		
-		SwingCounter += 1
-		if SwingCounter % 2 != 0:
-			print("lalala")
-			AnimatedSprite.play("Swing 1")
-			body2.set_meta("GettingHit",true)
-			print("True")
-			swinging = true
-			timer4.start(0.4)
-		else:
-			AnimatedSprite.play("Swing 2")
-			body2.set_meta("GettingHit",true)
-			print("True")
-			swinging = true
-			timer4.start(0.5)
-		if Entered == true and body2 is CharacterBody2D:
-			body2.set_meta("Health",body2.get_meta("Health")-20) 
-			print(body2.get_meta("Health"))
-	if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false and get_meta("Parry") == false and is_on_floor() == true:
-		sliding = true
-		slidinganimation = true
-		SlidingAnimationStart.start(0.001)
-		print("Sliding")
-		
-		EnableNormalMovement = false
-		if direction.length() != 0:
-			velocity.x  += 1500 * direction.x
-			timer2.start(0.2)
-		else:
-			velocity.x += 1500
+	if get_meta("Health") <= 0 and onlyonce2 == false:
+			Buttonn.visible = true
+			AnimatedSprite.play("Death")
+			print("akakaka")
+			onlyonce2 = true
 			
-			timer2.start(0.5)
-		currentslides +=  1
-	if currentslides >= maxslides and onlyonce == false:
-		onlyonce = true 
-		timer3.start(5)
-	if Input.is_action_just_pressed("Dash") and currentdashes < maxdashes and sliding == false and get_meta("Parry") == false:
-		dashing = true 
-		AnimatedSprite.play("Dash")
-		dashinganimation = true
-		timer5.start(0.4)
-		if direction.length() != 0:
-				velocity.x += 1500 * direction.x
+	if get_meta("Health")  > 0:
+		
+		
+		SuccessfulParry = get_meta("ParrySucessful")
+		
+		print(SuccessfulParry)
+		if is_on_floor():
+			floating = false
+		if floating == true and  Raycast2D1.get_collider() is not TileMapLayer:
+			velocity.y = 0
+		
+		if floating == true and Input.is_action_pressed("jump") == false: 
+			floating = false
+		
+		
+		if Raycast2D1.get_collider() is TileMapLayer and Input.is_action_just_pressed("jump"):
+			print("Tile")
+			velocity.y  -= 1500
+			
+		if Input.is_action_just_pressed("Parry") and get_meta("Parry") == false and ParryCanBeEnabled == true :
+			ParryCanBeEnabled = false
+			set_meta("ParrySucessful",false)
+			set_meta("Parry",true)
+			Shield.visible = true
+			
+			ParryTimer.start(1)
+		if get_meta("Parry") == true:
+			velocity.x = 0
+			
+		
+		
+		if is_on_floor() == false and jump == false and dashinganimation == false:
+			AnimatedSprite.play("Fall")
+		
+		if Input.is_action_just_pressed("LeftClick") and swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
+			
+			SwingCounter += 1
+			if SwingCounter % 2 != 0:
+				print("lalala")
+				AnimatedSprite.play("Swing 1")
+				body2.set_meta("GettingHit",true)
+				print("True")
+				swinging = true
+				timer4.start(0.4)
+			else:
+				AnimatedSprite.play("Swing 2")
+				body2.set_meta("GettingHit",true)
+				print("True")
+				swinging = true
+				timer4.start(0.5)
+			if Entered == true and body2 is CharacterBody2D:
+				body2.set_meta("Health",body2.get_meta("Health")-20) 
+				print(body2.get_meta("Health"))
+		if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false and get_meta("Parry") == false and is_on_floor() == true:
+			sliding = true
+			slidinganimation = true
+			SlidingAnimationStart.start(0.001)
+			print("Sliding")
+			
+			EnableNormalMovement = false
+			if direction.length() != 0:
+				velocity.x  += 1500 * direction.x
+				timer2.start(0.2)
+			else:
+				velocity.x += 1500
+				
+				timer2.start(0.5)
+			currentslides +=  1
+		if currentslides >= maxslides and onlyonce == false:
+			onlyonce = true 
+			timer3.start(5)
+		
+		
+		
+		if Input.is_action_just_pressed("Dash") and currentdashes < maxdashes and sliding == false and get_meta("Parry") == false:
+			dashing = true 
+			AnimatedSprite.play("Dash")
+			dashinganimation = true
+			timer5.start(0.4)
+			if direction.length() != 0:
+					velocity.x += 1500 * direction.x
+			else:
+				velocity.x += 1500
+		
+			currentdashes += 1 
+		if currentdashes >= maxdashes and onlyonce == false:
+			
+			timer.start(2)
+			onlyonce = true
+			
+		if Input.is_action_pressed("move_right"):
+			direction.x = 1
+			Raycast2D1.target_position.x = 40
+			if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true :
+				AnimatedSprite.play("Run")
+			AnimatedSprite.flip_h = false
+			#velocity.x = direction.x * 500
+		elif Input.is_action_pressed("move_left"):
+			direction.x = -1
+			if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
+				AnimatedSprite.play("Run")
+			
+			AnimatedSprite.flip_h = true
+			Raycast2D1.target_position.x = -40
+			##velocity.x = direction.x * 500
+			
 		else:
-			velocity.x += 1500
-	
-		currentdashes += 1 
-	if currentdashes >= maxdashes and onlyonce == false:
+			direction.x = 0
+			if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true and get_meta("Health")  > 0:
+				
+				AnimatedSprite.play("Idle")
 		
-		timer.start(2)
-		onlyonce = true
 		
-	if Input.is_action_pressed("move_right"):
-		direction.x = 1
-		Raycast2D1.target_position.x = 40
-		if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true :
-			AnimatedSprite.play("Run")
-		AnimatedSprite.flip_h = false
-		#velocity.x = direction.x * 500
-	elif Input.is_action_pressed("move_left"):
-		direction.x = -1
-		if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
-			AnimatedSprite.play("Run")
+		if Input.is_action_just_pressed("jump") and is_on_floor() and get_meta("Parry") == false :
+			velocity.y = -800
+			JumpFloatTimer.start(0.3)
+			jump = true
+			AnimatedSprite.play("Jump")
+			JumpingTimer.start(0.2)
+			
+		else:
+			velocity.y += 50
 		
-		AnimatedSprite.flip_h = true
-		Raycast2D1.target_position.x = -40
-		##velocity.x = direction.x * 500
-		
-	else:
-		direction.x = 0
-		if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
-			AnimatedSprite.play("Idle")
-	
-	
-	if Input.is_action_just_pressed("jump") and is_on_floor() and get_meta("Parry") == false :
-		velocity.y = -800
-		JumpFloatTimer.start(0.3)
-		jump = true
-		AnimatedSprite.play("Jump")
-		JumpingTimer.start(0.2)
-		
-	else:
-		velocity.y += 50
-	
-	if Input.is_action_just_pressed("jump") and is_on_floor() and timeframe == true:
-		print("ddddddddddddddd")
-		velocity.y = -1500
-		velocity.x += 500
-	if sliding == true and velocity.x == 0:
-		EnableNormalMovement = true
-	if EnableNormalMovement == true :
-		
-		velocity = velocity.move_toward(Vector2(direction.x* 500,velocity.y),2300 * delta)
-	elif sliding == true and EnableNormalMovement == false:
-			velocity = velocity.move_toward(Vector2(0,velocity.y),2000 * delta)
-	
+		if Input.is_action_just_pressed("jump") and is_on_floor() and timeframe == true:
+			print("ddddddddddddddd")
+			velocity.y = -1500
+			velocity.x += 500
+		if sliding == true and velocity.x == 0:
+			EnableNormalMovement = true
+		if EnableNormalMovement == true :
+			
+			velocity = velocity.move_toward(Vector2(direction.x* 500,velocity.y),2300 * delta)
+		elif sliding == true and EnableNormalMovement == false:
+				velocity = velocity.move_toward(Vector2(0,velocity.y),2000 * delta)
 
-	if (get_meta("Health")) <= 0:
-		Buttonn.visible = true
-		AnimatedSprite.play("Death")
-	move_and_slide()
+
+
+		move_and_slide()
 func _on_timer_timeout3():
 	print("Working3")
 	currentslides = 0
