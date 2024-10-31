@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var direction = Vector2.ZERO
+#Timer refrences all variables getting defined 
 @export var timer : Timer
 @export var timer2 : Timer
 @export var timer3 : Timer
@@ -37,14 +38,14 @@ var ParryCanBeEnabled = true
 var SuccessfulParry = false
 var body2 = CharacterBody2D.new()
 var onlyonce2 = false
-func wait(seconds: float) -> void:
 
-	await get_tree().create_timer(seconds).timeout
+#Dash cooldown timer 
 func _on_timer_timeout():
 	print("Working")
 	currentdashes = 0
 	onlyonce = false
 	dashing = false
+	#Slide Jump timeframe timer
 func _on_timer_timeout2():
 	print("Timeframe")
 	timeframe = true
@@ -56,38 +57,43 @@ func _on_timer_timeout2():
 		
 		
 var SwingCounter = 0
+#connecting all the timer functions
 func _ready():
 	timer.timeout.connect(_on_timer_timeout)
 	timer2.timeout.connect(_on_timer_timeout2)
 	timer3.timeout.connect(_on_timer_timeout3)
-	
+	#Main Game Loop
 func _physics_process(delta: float) -> void:
+	#Healthbar progress
 	ProgressBar1.value = get_meta("Health")
+	#Death if statement play animation
 	if get_meta("Health") <= 0 and onlyonce2 == false:
 			Buttonn.visible = true
 			AnimatedSprite.play("Death")
-			print("akakaka")
-			onlyonce2 = true
 			
+			onlyonce2 = true
+			#The main character movement and swinging all happens if the health is over 0
 	if get_meta("Health")  > 0:
 		
-		
+		#Get the successfulparry attribute on the player
 		SuccessfulParry = get_meta("ParrySucessful")
 		
 		print(SuccessfulParry)
+		#Checking if player is on floor if not then set floating top false
 		if is_on_floor():
 			floating = false
+			#If the floating is true and its not a walljump then make the character float
 		if floating == true and  Raycast2D1.get_collider() is not TileMapLayer:
 			velocity.y = 0
-		
+		#if the player is floating and they let go of the jump key then they fall
 		if floating == true and Input.is_action_pressed("jump") == false: 
 			floating = false
 		
-		
+		# Wall jumps if the raycast finds a tilemap and presses jump then it does a wall jump
 		if Raycast2D1.get_collider() is TileMapLayer and Input.is_action_just_pressed("jump"):
 			print("Tile")
 			velocity.y  -= 1500
-			
+			#If the player pressed the parry button and they arent parrying or in a cooldown then they can parry
 		if Input.is_action_just_pressed("Parry") and get_meta("Parry") == false and ParryCanBeEnabled == true :
 			ParryCanBeEnabled = false
 			set_meta("ParrySucessful",false)
@@ -99,15 +105,15 @@ func _physics_process(delta: float) -> void:
 			velocity.x = 0
 			
 		
-		
+	#if the player is midair and hteyre not dashing mid air then play the falling animation=
 		if is_on_floor() == false and jump == false and dashinganimation == false:
 			AnimatedSprite.play("Fall")
-		
+		#if the player pressed left click and theyre not dashing or sliding and jumpingf and not flying then they are allowed to swing
 		if Input.is_action_just_pressed("LeftClick") and swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
-			
+			#Every second swing will be different to every first swing and that animation plays accordingly
 			SwingCounter += 1
 			if SwingCounter % 2 != 0:
-				print("lalala")
+				
 				AnimatedSprite.play("Swing 1")
 				body2.set_meta("GettingHit",true)
 				print("True")
@@ -119,9 +125,11 @@ func _physics_process(delta: float) -> void:
 				print("True")
 				swinging = true
 				timer4.start(0.5)
+				#if an enemy has entered into the swinging radius then damage the enemy
 			if Entered == true and body2 is CharacterBody2D:
 				body2.set_meta("Health",body2.get_meta("Health")-20) 
 				print(body2.get_meta("Health"))
+				#if the player presse dthe slide key and they arent sliding or dashing or paryring or in mid air then they can slide 
 		if Input.is_action_just_pressed("slide") and currentslides < maxslides and dashing == false and get_meta("Parry") == false and is_on_floor() == true:
 			sliding = true
 			slidinganimation = true
@@ -142,7 +150,7 @@ func _physics_process(delta: float) -> void:
 			timer3.start(5)
 		
 		
-		
+		#If dash button is pressed and theyre not dashing or sliding or parrying then they can slide 
 		if Input.is_action_just_pressed("Dash") and currentdashes < maxdashes and sliding == false and get_meta("Parry") == false:
 			dashing = true 
 			AnimatedSprite.play("Dash")
@@ -154,18 +162,21 @@ func _physics_process(delta: float) -> void:
 				velocity.x += 1500
 		
 			currentdashes += 1 
+			#Dash cooldown 
 		if currentdashes >= maxdashes and onlyonce == false:
 			
 			timer.start(2)
 			onlyonce = true
-			
+			#If player tried moving right by pressing D then change the raycasts direction and flip the spirite to look to the right and change the direction 
 		if Input.is_action_pressed("move_right"):
 			direction.x = 1
 			Raycast2D1.target_position.x = 40
 			if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true :
+				#Play the run animation if theyre not doing any other states
 				AnimatedSprite.play("Run")
 			AnimatedSprite.flip_h = false
 			#velocity.x = direction.x * 500
+			#If player tried moving right by pressing A then change the raycasts direction and flip the spirite to look to the left and change the direction 
 		elif Input.is_action_pressed("move_left"):
 			direction.x = -1
 			if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
@@ -177,11 +188,12 @@ func _physics_process(delta: float) -> void:
 			
 		else:
 			direction.x = 0
+			#if the player is not swinging dashing sliding jumping or running then the idle animation plays 
 			if swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true and get_meta("Health")  > 0:
 				
 				AnimatedSprite.play("Idle")
 		
-		
+		#Jumping logic
 		if Input.is_action_just_pressed("jump") and is_on_floor() and get_meta("Parry") == false :
 			velocity.y = -800
 			JumpFloatTimer.start(0.3)
@@ -191,7 +203,7 @@ func _physics_process(delta: float) -> void:
 			
 		else:
 			velocity.y += 50
-		
+		#Slide jump logic 
 		if Input.is_action_just_pressed("jump") and is_on_floor() and timeframe == true:
 			print("ddddddddddddddd")
 			velocity.y = -1500
@@ -207,6 +219,7 @@ func _physics_process(delta: float) -> void:
 
 
 		move_and_slide()
+#All timer cooldown for slide swinging and dashing and functions to check if an enemy has entered the range of attack
 func _on_timer_timeout3():
 	print("Working3")
 	currentslides = 0
