@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://l81o0c5lbjn7" path="res://Sprite Sheets/Slide Start.png" id="7_i6tpf"]
 [ext_resource type="Texture2D" uid="uid://ngqjvyrchuug" path="res://Sprite Sheets/Swing 1.png" id="8_v60w5"]
 [ext_resource type="Texture2D" uid="uid://cdexyla2ymosf" path="res://Sprite Sheets/Swing 2.png" id="9_0ae06"]
-[ext_resource type="PackedScene" uid="uid://bokfi12u2x24x" path="res://Healthbar.tscn" id="13_2oc5k"]
+[ext_resource type="PackedScene" path="res://Healthbar.tscn" id="13_2oc5k"]
 [ext_resource type="Texture2D" uid="uid://bie5d2vaeehpk" path="res://pngwing.com.png" id="14_rydl3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aetyq"]
