@@ -1,0 +1,140 @@
+[gd_scene load_steps=21 format=3 uid="uid://bx6ygv4vvn70u"]
+
+[ext_resource type="Texture2D" uid="uid://cbxa6dtxv7k1e" path="res://Undead executioner puppet/png/summonAppear.png" id="1_xqpr8"]
+[ext_resource type="Texture2D" uid="uid://blkctju2w3paq" path="res://Undead executioner puppet/png/summonDeath.png" id="2_vuu3n"]
+[ext_resource type="Texture2D" uid="uid://bja0y6ck7xmpa" path="res://Undead executioner puppet/png/summonIdle.png" id="3_y34hk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2r13s"]
+atlas = ExtResource("1_xqpr8")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgb6n"]
+atlas = ExtResource("1_xqpr8")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35u2l"]
+atlas = ExtResource("1_xqpr8")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u46ds"]
+atlas = ExtResource("1_xqpr8")
+region = Rect2(0, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hs6m"]
+atlas = ExtResource("1_xqpr8")
+region = Rect2(50, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obx5l"]
+atlas = ExtResource("1_xqpr8")
+region = Rect2(100, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrr6b"]
+atlas = ExtResource("2_vuu3n")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y1p2"]
+atlas = ExtResource("2_vuu3n")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fuugr"]
+atlas = ExtResource("2_vuu3n")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h16dq"]
+atlas = ExtResource("2_vuu3n")
+region = Rect2(0, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omt81"]
+atlas = ExtResource("2_vuu3n")
+region = Rect2(50, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1plb"]
+atlas = ExtResource("3_y34hk")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc26i"]
+atlas = ExtResource("3_y34hk")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0cva"]
+atlas = ExtResource("3_y34hk")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wn37"]
+atlas = ExtResource("3_y34hk")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1y2mb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2r13s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgb6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35u2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u46ds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hs6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obx5l")
+}],
+"loop": true,
+"name": &"Wisp Appear",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrr6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y1p2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fuugr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h16dq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omt81")
+}],
+"loop": true,
+"name": &"Wisp Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1plb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc26i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0cva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wn37")
+}],
+"loop": true,
+"name": &"Wisp Idle Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8ck5"]
+size = Vector2(30, 31)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1y2mb")
+animation = &"Wisp Death"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n8ck5")
