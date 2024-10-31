@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://benrwa8mmy06w"]
+[gd_scene load_steps=80 format=3 uid="uid://benrwa8mmy06w"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_ihqp5"]
 [ext_resource type="Texture2D" uid="uid://sfpskei2m7xr" path="res://Sprite Sheets/Run.png" id="2_lpoq2"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bokfi12u2x24x" path="res://Healthbar.tscn" id="13_2oc5k"]
 [ext_resource type="Texture2D" uid="uid://bie5d2vaeehpk" path="res://pngwing.com.png" id="14_rydl3"]
 [ext_resource type="PackedScene" uid="uid://dgqnfq6fc1e26" path="res://Respawn.tscn" id="15_g7xfb"]
+[ext_resource type="Script" path="res://control_2.gd" id="18_1psyr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aetyq"]
 atlas = ExtResource("2_pocnw")
@@ -522,6 +523,7 @@ AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/Health = 100
 metadata/Parry = false
 metadata/ParrySucessful = false
+metadata/KilledBoss = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-18, 45)
@@ -599,6 +601,38 @@ texture = ExtResource("14_rydl3")
 
 [node name="Control" parent="." instance=ExtResource("15_g7xfb")]
 
+[node name="Control2" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("18_1psyr")
+
+[node name="TextEdit" type="TextEdit" parent="Control2"]
+layout_mode = 0
+offset_left = -55.0
+offset_top = -21.0
+offset_right = 85.0
+offset_bottom = 23.0
+text = "You win!"
+
+[node name="Button" type="Button" parent="Control2"]
+layout_mode = 0
+offset_left = -63.0
+offset_top = 65.0
+offset_right = 87.0
+offset_bottom = 96.0
+text = "Replay"
+
+[node name="Button2" type="Button" parent="Control2"]
+layout_mode = 0
+offset_left = -62.0
+offset_top = 27.0
+offset_right = 88.0
+offset_bottom = 58.0
+text = "Quit"
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Timer4" to="." method="_on_timer_4_timeout"]
@@ -610,3 +644,5 @@ texture = ExtResource("14_rydl3")
 [connection signal="timeout" from="ParryTimer" to="." method="_on_parry_timer_timeout"]
 [connection signal="timeout" from="ParryTimer2" to="." method="_on_parry_timer_2_timeout"]
 [connection signal="timeout" from="JumpFloat" to="." method="_on_jump_float_timeout"]
+[connection signal="pressed" from="Control2/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control2/Button2" to="." method="_on_button_2_pressed"]

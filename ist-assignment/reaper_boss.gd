@@ -18,6 +18,7 @@ func _physics_process(delta: float) -> void:
 		AnimatedSprite.play("Reaper-Death")
 		await get_tree().create_timer(1.7).timeout
 		queue_free()
+		player.set_meta("KilledBoss",true)
 		
 		
 	if get_meta("Health") > 0:
@@ -34,13 +35,13 @@ func _physics_process(delta: float) -> void:
 			
 			slashing = true
 			if   player.get_meta("Parry") == false:
-				player.set_meta("Health",player.get_meta("Health")-10)
+				player.set_meta("Health",player.get_meta("Health")-25)
 			await get_tree().create_timer(1).timeout
 			SlashingTimer.start(3)
 		
 			if ShapeCast.get_collider(0) and player.get_meta("Parry") == false :
 				print(ShapeCast.get_collider(0))
-				player.set_meta("Health",player.get_meta("Health")-10)
+				player.set_meta("Health",player.get_meta("Health")-25)
 			await get_tree().create_timer(0.3).timeout
 			AnimatedSprite.play("Reaper-Idle and Walk")
 		

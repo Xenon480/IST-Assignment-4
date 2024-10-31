@@ -65,6 +65,8 @@ func _ready():
 	#Main Game Loop
 func _physics_process(delta: float) -> void:
 	#Healthbar progress
+	if get_meta("KilledBoss") == true:
+		find_child("Control2").visible = true
 	ProgressBar1.value = get_meta("Health")
 	#Death if statement play animation
 	if get_meta("Health") <= 0 and onlyonce2 == false:
@@ -109,26 +111,26 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor() == false and jump == false and dashinganimation == false:
 			AnimatedSprite.play("Fall")
 		#if the player pressed left click and theyre not dashing or sliding and jumpingf and not flying then they are allowed to swing
-		if Input.is_action_just_pressed("LeftClick") and swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true:
+		if Input.is_action_just_pressed("LeftClick") and swinging == false and dashinganimation == false and slidinganimation == false and jump == false and  is_on_floor() == true and get_meta("Parry") == false:
 			#Every second swing will be different to every first swing and that animation plays accordingly
 			SwingCounter += 1
 			if SwingCounter % 2 != 0:
 				
 				AnimatedSprite.play("Swing 1")
-				if body2:
+				if body2 != null:
 					body2.set_meta("GettingHit",true)
 				
 				swinging = true
 				timer4.start(0.4)
 			else:
 				AnimatedSprite.play("Swing 2")
-				if body2:
+				if body2 != null:
 					body2.set_meta("GettingHit",true)
 				
 				swinging = true
 				timer4.start(0.5)
 				#if an enemy has entered into the swinging radius then damage the enemy
-				print(body2.name)
+				
 			if Entered == true and body2 is CharacterBody2D:
 				
 				body2.set_meta("Health",body2.get_meta("Health")-20) 
@@ -274,10 +276,10 @@ func _on_parry_timer_timeout() -> void:
 	set_meta("Parry",false)
 	Shield.visible = false 
 	if SuccessfulParry == false:
-		ParryTimer2.start(3)
+		ParryTimer2.start(1.5)
 	else:
 		print("aajajaaa")
-		ParryTimer2.start(1)
+		ParryTimer2.start(0.5)
 
 
 func _on_parry_timer_2_timeout() -> void:
@@ -288,3 +290,11 @@ func _on_parry_timer_2_timeout() -> void:
 func _on_jump_float_timeout() -> void:
 	if Input.is_action_pressed("jump") and is_on_floor() == false:
 		floating = true 
+
+
+func _on_button_pressed() -> void:
+	get_tree().reload_current_scene()
+
+
+func _on_button_2_pressed() -> void:
+	get_tree().quit()

@@ -357,7 +357,7 @@ metadata/Health = 200
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_cfym5")
 animation = &"Reaper-Death"
-frame_progress = 0.0950938
+frame_progress = 0.928373
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
