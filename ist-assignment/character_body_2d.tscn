@@ -1,20 +1,21 @@
-[gd_scene load_steps=66 format=3 uid="uid://benrwa8mmy06w"]
+[gd_scene load_steps=78 format=3 uid="uid://benrwa8mmy06w"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_ihqp5"]
 [ext_resource type="Texture2D" uid="uid://sfpskei2m7xr" path="res://Sprite Sheets/Run.png" id="2_lpoq2"]
 [ext_resource type="Texture2D" uid="uid://7wwpsc17py7q" path="res://Sprite Sheets/Dash.png" id="2_pocnw"]
 [ext_resource type="Texture2D" uid="uid://ctj0w256get3c" path="res://Sprite Sheets/Idle.png" id="2_wfsdl"]
+[ext_resource type="Texture2D" uid="uid://c3aljnnkajj1r" path="res://Knight Anims/DeathNoMovement.png" id="3_lnnbi"]
 [ext_resource type="Texture2D" uid="uid://b6vliqln6fam1" path="res://Sprite Sheets/Fall.png" id="3_ltmo8"]
 [ext_resource type="Texture2D" uid="uid://ca2igfyudtjm7" path="res://Sprite Sheets/Slide.png" id="4_bwei0"]
 [ext_resource type="Texture2D" uid="uid://y51tc145ec2j" path="res://Knight Anims/Jump.png" id="4_dwlw0"]
 [ext_resource type="Texture2D" uid="uid://cg258fwkx103" path="res://Knight Anims/JumpFallInbetween.png" id="5_c8x8m"]
+[ext_resource type="Texture2D" uid="uid://qi7m65g44305" path="res://Knight Anims/Hit.png" id="5_gs3tn"]
 [ext_resource type="Texture2D" uid="uid://cu3xppncnnwya" path="res://Sprite Sheets/Slide End].png" id="6_troxi"]
 [ext_resource type="Texture2D" uid="uid://l81o0c5lbjn7" path="res://Sprite Sheets/Slide Start.png" id="7_i6tpf"]
 [ext_resource type="Texture2D" uid="uid://ngqjvyrchuug" path="res://Sprite Sheets/Swing 1.png" id="8_v60w5"]
 [ext_resource type="Texture2D" uid="uid://cdexyla2ymosf" path="res://Sprite Sheets/Swing 2.png" id="9_0ae06"]
-[ext_resource type="PackedScene" uid="uid://bokfi12u2x24x" path="res://Healthbar.tscn" id="13_2oc5k"]
+[ext_resource type="PackedScene" path="res://Healthbar.tscn" id="13_2oc5k"]
 [ext_resource type="Texture2D" uid="uid://bie5d2vaeehpk" path="res://pngwing.com.png" id="14_rydl3"]
-[ext_resource type="PackedScene" uid="uid://dgqnfq6fc1e26" path="res://Respawn.tscn" id="15_g7xfb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aetyq"]
 atlas = ExtResource("2_pocnw")
@@ -23,6 +24,46 @@ region = Rect2(0, 39, 120, 41)
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2avg"]
 atlas = ExtResource("2_pocnw")
 region = Rect2(120, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p28nk"]
+atlas = ExtResource("3_lnnbi")
+region = Rect2(0, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gal27"]
+atlas = ExtResource("3_lnnbi")
+region = Rect2(120, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h54wu"]
+atlas = ExtResource("3_lnnbi")
+region = Rect2(240, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m82y0"]
+atlas = ExtResource("3_lnnbi")
+region = Rect2(360, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tj6n6"]
+atlas = ExtResource("3_lnnbi")
+region = Rect2(480, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfofv"]
+atlas = ExtResource("3_lnnbi")
+region = Rect2(600, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8rg4"]
+atlas = ExtResource("3_lnnbi")
+region = Rect2(720, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wjb7"]
+atlas = ExtResource("3_lnnbi")
+region = Rect2(840, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlu6m"]
+atlas = ExtResource("3_lnnbi")
+region = Rect2(960, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bsan"]
+atlas = ExtResource("3_lnnbi")
+region = Rect2(1080, 39, 120, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_157rg"]
 atlas = ExtResource("3_ltmo8")
@@ -35,6 +76,10 @@ region = Rect2(120, 39, 120, 41)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7lmk4"]
 atlas = ExtResource("3_ltmo8")
 region = Rect2(240, 39, 120, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgoqe"]
+atlas = ExtResource("5_gs3tn")
+region = Rect2(0, 39, 120, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ttupo"]
 atlas = ExtResource("2_wfsdl")
@@ -219,6 +264,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_p28nk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gal27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h54wu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m82y0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tj6n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfofv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8rg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wjb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlu6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bsan")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_157rg")
 }, {
 "duration": 1.0,
@@ -230,6 +310,14 @@ animations = [{
 "loop": true,
 "name": &"Fall",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgoqe")
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -409,7 +497,7 @@ size = Vector2(22.25, 25)
 [sub_resource type="CircleShape2D" id="CircleShape2D_26s36"]
 radius = 35.6931
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "JumpingTimer", "ParryTimer", "ParryTimer2", "ProgressBar1", "Raycast2D1", "JumpFloatTimer", "Shield", "Buttonn", "AnimatedSprite")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "JumpingTimer", "ParryTimer", "ParryTimer2", "ProgressBar1", "Raycast2D1", "JumpFloatTimer", "Shield", "AnimatedSprite")]
 position = Vector2(-1, 0)
 collision_layer = 3
 script = ExtResource("1_ihqp5")
@@ -428,7 +516,6 @@ ProgressBar1 = NodePath("ColorRect")
 Raycast2D1 = NodePath("RayCast2D")
 JumpFloatTimer = NodePath("JumpFloat")
 Shield = NodePath("Pngwing_com")
-Buttonn = NodePath("Control")
 AnimatedSprite = NodePath("AnimatedSprite2D")
 metadata/Health = 100
 metadata/Parry = false
@@ -438,8 +525,7 @@ metadata/ParrySucessful = false
 position = Vector2(-18, 45)
 scale = Vector2(0.66, 0.66)
 sprite_frames = SubResource("SpriteFrames_up5i5")
-animation = &"Swing 2"
-frame_progress = 0.66039
+animation = &"Death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-19.875, 46.5)
@@ -506,8 +592,6 @@ visible = false
 position = Vector2(-15, 46)
 scale = Vector2(0.00577331, 0.00577331)
 texture = ExtResource("14_rydl3")
-
-[node name="Control" parent="." instance=ExtResource("15_g7xfb")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
