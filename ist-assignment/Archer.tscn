@@ -224,6 +224,7 @@ size = Vector2(35, 44)
 
 [node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "DeathTimer", "StunTimer", "ArrowTimer", "AnimatedSprite")]
 position = Vector2(1, -22)
+collision_layer = 157
 script = ExtResource("1_5s3j4")
 Shapecast = NodePath("ShapeCast2D")
 DeathTimer = NodePath("DeathTimer")

@@ -1,12 +1,10 @@
-[gd_scene load_steps=51 format=3 uid="uid://dmpdhbnwud5nw"]
+[gd_scene load_steps=53 format=3 uid="uid://cmu21esan2qj7"]
 
 [ext_resource type="Texture2D" uid="uid://bxldjljlnbmgx" path="res://Undead executioner puppet/png/attacking.png" id="1_div62"]
+[ext_resource type="Script" path="res://reaper_boss.gd" id="1_hm88i"]
 [ext_resource type="Texture2D" uid="uid://o7ur2605o7sy" path="res://Undead executioner puppet/png/death.png" id="2_didum"]
 [ext_resource type="Texture2D" uid="uid://b170qmno1e5qq" path="res://Undead executioner puppet/png/idle2.png" id="3_rpc34"]
 [ext_resource type="Texture2D" uid="uid://3k3vil4ijkdx" path="res://Undead executioner puppet/png/summon.png" id="4_rwt7l"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2ioo"]
-size = Vector2(59, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r2ih3"]
 atlas = ExtResource("1_div62")
@@ -339,13 +337,47 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_d87ln"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 3)
-shape = SubResource("RectangleShape2D_o2ioo")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ob81"]
+size = Vector2(120, 30)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("AnimatedSprite", "ShapeCast", "SlashingTimer", "wispreleasetimer")]
+collision_layer = 157
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_hm88i")
+AnimatedSprite = NodePath("AnimatedSprite2D")
+ShapeCast = NodePath("ShapeCast2D")
+SlashingTimer = NodePath("SlashTimer")
+wispreleasetimer = NodePath("WispReleaseTimer")
+metadata/Health = 200
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_cfym5")
-animation = &"Reaper-2-Slices"
+animation = &"Reaper-Death"
+frame_progress = 0.0950938
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 15.0
+debug_enabled = true
+
+[node name="SlashTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WispReleaseTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-10, 4)
+shape = SubResource("CircleShape2D_d87ln")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_6ob81")
+target_position = Vector2(28, 0)
+collision_mask = 8
+
+[connection signal="timeout" from="SlashTimer" to="." method="_on_slash_timer_timeout"]
+[connection signal="timeout" from="WispReleaseTimer" to="." method="_on_wisp_release_timer_timeout"]

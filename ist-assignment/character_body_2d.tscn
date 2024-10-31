@@ -496,11 +496,11 @@ animations = [{
 size = Vector2(22.25, 25)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_26s36"]
-radius = 35.6931
+radius = 62.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("timer", "timer2", "timer3", "timer4", "timer5", "SlidingAnimationStart", "SlidingAnimationMiddle", "SlidingAnimationEnd", "JumpingTimer", "ParryTimer", "ParryTimer2", "ProgressBar1", "Raycast2D1", "JumpFloatTimer", "Shield", "Buttonn", "AnimatedSprite")]
 position = Vector2(-1, 0)
-collision_layer = 3
+collision_layer = 154
 script = ExtResource("1_ihqp5")
 timer = NodePath("Timer")
 timer2 = NodePath("Timer2")
@@ -548,7 +548,7 @@ one_shot = true
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
+collision_layer = 144
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-20, 46)

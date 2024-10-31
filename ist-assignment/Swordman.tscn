@@ -426,6 +426,7 @@ size = Vector2(300, 150)
 size = Vector2(145, 99)
 
 [node name="Theman" type="CharacterBody2D" node_paths=PackedStringArray("Shapecast", "AnimatedSprite", "StunTimer", "SlashingTimer", "DelayTimer", "DeathTimer", "Timer1")]
+collision_layer = 157
 script = ExtResource("1_agoay")
 Shapecast = NodePath("ShapeCast2D")
 AnimatedSprite = NodePath("AnimatedSprite2D")

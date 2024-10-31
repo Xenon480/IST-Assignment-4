@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 		#Get the successfulparry attribute on the player
 		SuccessfulParry = get_meta("ParrySucessful")
 		
-		print(SuccessfulParry)
+		
 		#Checking if player is on floor if not then set floating top false
 		if is_on_floor():
 			floating = false
@@ -115,18 +115,22 @@ func _physics_process(delta: float) -> void:
 			if SwingCounter % 2 != 0:
 				
 				AnimatedSprite.play("Swing 1")
-				body2.set_meta("GettingHit",true)
-				print("True")
+				if body2:
+					body2.set_meta("GettingHit",true)
+				
 				swinging = true
 				timer4.start(0.4)
 			else:
 				AnimatedSprite.play("Swing 2")
-				body2.set_meta("GettingHit",true)
-				print("True")
+				if body2:
+					body2.set_meta("GettingHit",true)
+				
 				swinging = true
 				timer4.start(0.5)
 				#if an enemy has entered into the swinging radius then damage the enemy
+				print(body2.name)
 			if Entered == true and body2 is CharacterBody2D:
+				
 				body2.set_meta("Health",body2.get_meta("Health")-20) 
 				print(body2.get_meta("Health"))
 				#if the player presse dthe slide key and they arent sliding or dashing or paryring or in mid air then they can slide 

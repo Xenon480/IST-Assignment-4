@@ -54,7 +54,7 @@ func _physics_process(delta):
 func _on_timer_timeout():
 	onlyonce3 = false
 	if Shapecast.get_collider(0) and get_meta("Health") > 0  and gettinghit == false:
-		print("AGVYtfkytulewh")
+		
 		AnimatedSprite.play("Archer-Shoot")
 		var dupe = scene.instantiate()
 		add_child(dupe)
