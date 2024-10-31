@@ -16,6 +16,7 @@ var direction = Vector2.ZERO
 @export var Raycast2D1: RayCast2D
 @export var JumpFloatTimer: Timer
 @export var Shield: Sprite2D
+@export var Buttonn: Node
 var jump = false
 var floating = false
 @export var  AnimatedSprite: AnimatedSprite2D
@@ -35,6 +36,7 @@ var slidinganimation = false
 var ParryCanBeEnabled = true
 var SuccessfulParry = false
 var body2 = CharacterBody2D.new()
+
 func wait(seconds: float) -> void:
 
 	await get_tree().create_timer(seconds).timeout
@@ -61,6 +63,7 @@ func _ready():
 	
 func _physics_process(delta):
 	SuccessfulParry = get_meta("ParrySucessful")
+	
 	print(SuccessfulParry)
 	if is_on_floor():
 		floating = false
@@ -189,7 +192,7 @@ func _physics_process(delta):
 	
 
 	if (get_meta("Health")) <= 0:
-		get_tree().quit()
+		Buttonn.visible = true
 	move_and_slide()
 func _on_timer_timeout3():
 	print("Working3")
